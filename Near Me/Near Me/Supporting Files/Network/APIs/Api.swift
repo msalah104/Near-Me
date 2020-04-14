@@ -8,6 +8,7 @@
 //
 import Alamofire
 import PromiseKit
+import RxSwift
 import UIKit
 
 class Api: NSObject {
@@ -37,6 +38,36 @@ extension Api {
     func fireRequestWithSingleResponse<T: Codable>(requestable: Requestable) -> Promise<T> {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let taskId = beginBackgroundUpdateTask()
+//        return Observable<T>.create { observable in
+//
+//            let completionHandler: (DataResponse<T>) -> Void = { response in
+//                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//                self.endBackgroundUpdateTask(taskID: taskId)
+//                guard response.error == nil else {
+//                    if (response.error as? URLError) != nil {
+//                        // no internet connection
+//                        let errorN = CustomError(code: "00-000", message: "Sorry, Please check your internet connection")
+////                        seal.reject(errorN)
+//                        observable.onError(errorN)
+//                        return
+//                    }
+//                    observable.onError(CustomError.getError(error: response.error!))
+////                    seal.reject(CustomError.getError(error: response.error!))
+//                    return
+//                }
+//                guard response.value != nil else {
+//                    _ = NSError(domain: "JSONResponseError", code: 3841, userInfo: nil)
+////                    seal.reject(CustomError.getError(error: response.error!))
+//                    observable.onError(CustomError.getError(error: response.error!))
+//                    return
+//                }
+//                observable.onNext(response.result.value!)
+////                seal.fulfill(response.result.value!)
+//
+//            }
+//            requestable.request(requestID: self.requestsId, with: completionHandler)
+//            return Disposables.create()
+//        }
         return Promise<T> { seal in
             let completionHandler: (DataResponse<T>) -> Void = { response in
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false

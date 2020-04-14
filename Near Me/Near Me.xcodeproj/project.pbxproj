@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		024AB98431AF46E3A10B16A3 /* Pods_Near_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0D6A64B19B18A9B4219811 /* Pods_Near_Me.framework */; };
+		6A5543272444DA1000003DD0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5543262444DA1000003DD0 /* UIViewController+Extension.swift */; };
+		6A55432A2444ED9F00003DD0 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A5543292444ED9E00003DD0 /* keys.plist */; };
+		6A55432C2444EE0700003DD0 /* FourSquarRequestParamters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55432B2444EE0700003DD0 /* FourSquarRequestParamters.swift */; };
+		6A55432E2444EE1300003DD0 /* BaseRequestParamters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55432D2444EE1300003DD0 /* BaseRequestParamters.swift */; };
+		6A554330244531D200003DD0 /* PlaceImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55432F244531D200003DD0 /* PlaceImageResponse.swift */; };
+		6A554332244531DE00003DD0 /* PlaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A554331244531DE00003DD0 /* PlaceImage.swift */; };
+		6A5543342445335A00003DD0 /* PlaceImageRequestParamters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */; };
 		6A91D6302443556200F1631C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D62F2443556200F1631C /* AppDelegate.swift */; };
 		6A91D6372443556200F1631C /* NearLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D6352443556200F1631C /* NearLocation.storyboard */; };
 		6A91D6392443556400F1631C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D6382443556400F1631C /* Assets.xcassets */; };
@@ -18,7 +25,7 @@
 		6A91D6542443633500F1631C /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D64C2443633500F1631C /* Keys.swift */; };
 		6A91D6552443633500F1631C /* AlamofireRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D64D2443633500F1631C /* AlamofireRequestExtensions.swift */; };
 		6A91D6562443633500F1631C /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D64E2443633500F1631C /* ServiceManager.swift */; };
-		6A91D6572443633500F1631C /* ItunesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D64F2443633500F1631C /* ItunesApi.swift */; };
+		6A91D6572443633500F1631C /* FoursquareApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D64F2443633500F1631C /* FoursquareApi.swift */; };
 		6A91D6582443633500F1631C /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D6502443633500F1631C /* Api.swift */; };
 		6A91D6592443633500F1631C /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D6512443633500F1631C /* CustomError.swift */; };
 		6A91D6642443698300F1631C /* PlacesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D6632443698300F1631C /* PlacesResponse.swift */; };
@@ -39,6 +46,13 @@
 
 /* Begin PBXFileReference section */
 		159ED27C01A5335CAF83821D /* Pods-Near Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near Me.release.xcconfig"; path = "Target Support Files/Pods-Near Me/Pods-Near Me.release.xcconfig"; sourceTree = "<group>"; };
+		6A5543262444DA1000003DD0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		6A5543292444ED9E00003DD0 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		6A55432B2444EE0700003DD0 /* FourSquarRequestParamters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquarRequestParamters.swift; sourceTree = "<group>"; };
+		6A55432D2444EE1300003DD0 /* BaseRequestParamters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestParamters.swift; sourceTree = "<group>"; };
+		6A55432F244531D200003DD0 /* PlaceImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageResponse.swift; sourceTree = "<group>"; };
+		6A554331244531DE00003DD0 /* PlaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImage.swift; sourceTree = "<group>"; };
+		6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageRequestParamters.swift; sourceTree = "<group>"; };
 		6A91D62C2443556200F1631C /* Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A91D62F2443556200F1631C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A91D6362443556200F1631C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NearLocation.storyboard; sourceTree = "<group>"; };
@@ -51,7 +65,7 @@
 		6A91D64C2443633500F1631C /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		6A91D64D2443633500F1631C /* AlamofireRequestExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireRequestExtensions.swift; sourceTree = "<group>"; };
 		6A91D64E2443633500F1631C /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
-		6A91D64F2443633500F1631C /* ItunesApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItunesApi.swift; sourceTree = "<group>"; };
+		6A91D64F2443633500F1631C /* FoursquareApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareApi.swift; sourceTree = "<group>"; };
 		6A91D6502443633500F1631C /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		6A91D6512443633500F1631C /* CustomError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		6A91D6632443698300F1631C /* PlacesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesResponse.swift; sourceTree = "<group>"; };
@@ -93,6 +107,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6A5543282444EC4F00003DD0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		6A91D6232443556200F1631C = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +148,7 @@
 		6A91D64324435CE500F1631C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6A5543292444ED9E00003DD0 /* keys.plist */,
 				6A91D66C244375CB00F1631C /* Extensions */,
 				6A91D6482443633500F1631C /* Network */,
 				6A91D64424435CEC00F1631C /* Utils */,
@@ -147,6 +169,7 @@
 		6A91D6482443633500F1631C /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				6A5543282444EC4F00003DD0 /* Models */,
 				6A91D6622443690400F1631C /* RequesrParams */,
 				6A91D64A2443633500F1631C /* APIs */,
 				6A91D64B2443633500F1631C /* Requestable.swift */,
@@ -162,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				6A91D6502443633500F1631C /* Api.swift */,
-				6A91D64F2443633500F1631C /* ItunesApi.swift */,
+				6A91D64F2443633500F1631C /* FoursquareApi.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -227,6 +250,8 @@
 				6A91D6632443698300F1631C /* PlacesResponse.swift */,
 				6A91D66624436EED00F1631C /* PlacesGroups.swift */,
 				6A91D66824436F3400F1631C /* Place.swift */,
+				6A55432F244531D200003DD0 /* PlaceImageResponse.swift */,
+				6A554331244531DE00003DD0 /* PlaceImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				6A91D6492443633500F1631C /* RequestParamters.swift */,
+				6A55432B2444EE0700003DD0 /* FourSquarRequestParamters.swift */,
+				6A55432D2444EE1300003DD0 /* BaseRequestParamters.swift */,
+				6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */,
 			);
 			path = RequesrParams;
 			sourceTree = "<group>";
@@ -254,6 +282,7 @@
 				6A91D6792443C59200F1631C /* Container+Extension.swift */,
 				6A91D66D244375E100F1631C /* UIStorybaord+Extension.swift */,
 				6A91D6772443BEA000F1631C /* AppDelegate+Setup.swift */,
+				6A5543262444DA1000003DD0 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A55432A2444ED9F00003DD0 /* keys.plist in Resources */,
 				6A91D63C2443556400F1631C /* LaunchScreen.storyboard in Resources */,
 				6A91D6392443556400F1631C /* Assets.xcassets in Resources */,
 				6A91D6372443556200F1631C /* NearLocation.storyboard in Resources */,
@@ -382,10 +412,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A5543272444DA1000003DD0 /* UIViewController+Extension.swift in Sources */,
 				6A91D6552443633500F1631C /* AlamofireRequestExtensions.swift in Sources */,
 				6A91D67C2443C5B500F1631C /* StoryboardLodable.swift in Sources */,
+				6A554332244531DE00003DD0 /* PlaceImage.swift in Sources */,
 				6A91D674244389C500F1631C /* NearMeViewController.swift in Sources */,
 				6A91D6302443556200F1631C /* AppDelegate.swift in Sources */,
+				6A5543342445335A00003DD0 /* PlaceImageRequestParamters.swift in Sources */,
 				6A91D6522443633500F1631C /* RequestParamters.swift in Sources */,
 				6A91D6532443633500F1631C /* Requestable.swift in Sources */,
 				6A91D6802443D8B000F1631C /* LocationManager.swift in Sources */,
@@ -393,6 +426,7 @@
 				6A91D66E244375E100F1631C /* UIStorybaord+Extension.swift in Sources */,
 				6A91D6592443633500F1631C /* CustomError.swift in Sources */,
 				6A91D6582443633500F1631C /* Api.swift in Sources */,
+				6A554330244531D200003DD0 /* PlaceImageResponse.swift in Sources */,
 				6A91D6562443633500F1631C /* ServiceManager.swift in Sources */,
 				6A91D66924436F3400F1631C /* Place.swift in Sources */,
 				6A91D671244387A000F1631C /* PlaceTableViewCell.swift in Sources */,
@@ -400,10 +434,12 @@
 				6A91D6642443698300F1631C /* PlacesResponse.swift in Sources */,
 				6A91D6542443633500F1631C /* Keys.swift in Sources */,
 				6A91D64624435CFF00F1631C /* Configurations.swift in Sources */,
-				6A91D6572443633500F1631C /* ItunesApi.swift in Sources */,
+				6A91D6572443633500F1631C /* FoursquareApi.swift in Sources */,
 				6A91D67E2443D47200F1631C /* LocationUpdater.swift in Sources */,
+				6A55432C2444EE0700003DD0 /* FourSquarRequestParamters.swift in Sources */,
 				6A91D6762443906C00F1631C /* NearMeViewModel.swift in Sources */,
 				6A91D6782443BEA000F1631C /* AppDelegate+Setup.swift in Sources */,
+				6A55432E2444EE1300003DD0 /* BaseRequestParamters.swift in Sources */,
 				6A91D67A2443C59200F1631C /* Container+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

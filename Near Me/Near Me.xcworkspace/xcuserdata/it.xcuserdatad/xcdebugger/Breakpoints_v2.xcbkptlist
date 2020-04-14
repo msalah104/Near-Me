@@ -7,32 +7,160 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2C07C76D-79E5-4E6C-9B18-4226C0FF7039"
+            uuid = "106EC946-37C2-4198-8AA4-28FC1A83672E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Near Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
+            filePath = "Near Me/Scenarios/NearLocations/ViewControllers/NearMeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "init(locationManager:)"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "didPressChangeMode(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD1CD26B-8FD3-4522-B18F-F1AD56DEBE25"
+            uuid = "8A767D25-9D40-4A62-90C9-B5D5A428482C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Near Me/Supporting Files/Network/Requestable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "asURLRequest()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B830D275-9A83-4052-97A0-A67FB44F435C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Near Me/Supporting Files/Network/APIs/FoursquareApi.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "fetchImage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4B269F47-054E-433A-98F4-060D743B5A86"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Near Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "userNewCurrentLocation(_:_:)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "fetchPlacesForNewLocation(long:lat:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4B269F47-054E-433A-98F4-060D743B5A86 - 5fe235944ecaefa1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #6 (Swift.Array&lt;Near_Me.Place&gt;) -&gt; () in Near_Me.NearMeViewModel.fetchPlacesForNewLocation(long: Swift.Double, lat: Swift.Double) -&gt; ()"
+                  moduleName = "Near Me"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedsalah/Data/Work/Apps/Near%20Me/Near-Me/Near%20Me/Near%20Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "201">
+               </Location>
+               <Location
+                  uuid = "4B269F47-054E-433A-98F4-060D743B5A86 - 1ebabb047d12cb2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #7 (Swift.Error) -&gt; () in Near_Me.NearMeViewModel.fetchPlacesForNewLocation(long: Swift.Double, lat: Swift.Double) -&gt; ()"
+                  moduleName = "Near Me"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedsalah/Data/Work/Apps/Near%20Me/Near-Me/Near%20Me/Near%20Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "23">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D28E2D8C-86FF-478A-86C2-7AAF0B66AB34"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Near Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "fetchPlacesForNewLocation(long:lat:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D28E2D8C-86FF-478A-86C2-7AAF0B66AB34 - 9af364eac1257559"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Near_Me.NearMeViewModel.fetchPlacesForNewLocation(long: Swift.Double, lat: Swift.Double) -&gt; ()"
+                  moduleName = "Near Me"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedsalah/Data/Work/Apps/Near%20Me/Near-Me/Near%20Me/Near%20Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "2380">
+               </Location>
+               <Location
+                  uuid = "D28E2D8C-86FF-478A-86C2-7AAF0B66AB34 - 1ebabb047d12cb2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #7 (Swift.Error) -&gt; () in Near_Me.NearMeViewModel.fetchPlacesForNewLocation(long: Swift.Double, lat: Swift.Double) -&gt; ()"
+                  moduleName = "Near Me"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mohammedsalah/Data/Work/Apps/Near%20Me/Near-Me/Near%20Me/Near%20Me/Scenarios/NearLocations/ViewModel/NearMeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "203">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F5789CB0-08C3-4DA5-B102-E909AA9704D4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Near Me/Scenarios/NearLocations/ViewControllers/NearMeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "setupDataBinding()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -22,7 +22,7 @@ class Configurations: NSObject {
     static var mode: ProjectMode = .development
     static let DefaultSearchRadius = 1000.0
     static let DefaultUpdateDsitance = 500.0
-    private static let DefaultApiVersion = "20180323"
+    static let DefaultApiVersion = "20180323"
     
     static var BaseUrl: URL {
           if Configurations.mode == .development {

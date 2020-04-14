@@ -16,7 +16,7 @@ enum LocationUpdateType {
 
 protocol LocationDelegate:AnyObject {
     // For monotoring user location change
-    func userNewCurrentLocation(_ long:Double, _ lat:Double)
+    func userNewLocation(_ long:Double, _ lat:Double)
     func errorWhileRequestLocation(_ error: Error)
 }
 
@@ -95,7 +95,7 @@ extension LocationUpdater: CLLocationManagerDelegate{
             self.locationManager?.stopUpdatingLocation()
         }
         
-        self.locationDelegate?.userNewCurrentLocation(location!.coordinate.longitude, location!.coordinate.latitude)
+        self.locationDelegate?.userNewLocation(location!.coordinate.longitude, location!.coordinate.latitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

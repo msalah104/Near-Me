@@ -8,6 +8,16 @@
 
 import UIKit
 
-class PlacesGroups: Codable {
-
+struct PlacesGroupsResponse: Codable {
+    var groups : [PlacesGroups]?
 }
+
+struct PlacesGroups: Codable {
+    
+    struct Item:Codable {
+        var venue:Place?
+    }
+    
+    var items:[Item]?
+}
+

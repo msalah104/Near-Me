@@ -81,21 +81,7 @@ extension Requestable {
             url = url.appendingPathComponent(extraParams)
         }
 
-        // get ApiKey
-
-        var urlRequest = try URLRequest(url: url, method: method)
-
-        if header != nil {
-            for (key, value) in header! {
-                urlRequest.setValue(value, forHTTPHeaderField: key)
-            }
-        }
-
-//        if let token = UserConfiguration.current.user.getToken() {
-//            urlRequest.addValue(token, forHTTPHeaderField: ServerKeys.userToken)
-//        }
-
-//        urlRequest.addValue(ServerKeys.contentValue, forHTTPHeaderField: ServerKeys.content)
+        let urlRequest = try URLRequest(url: url, method: method)
         print("\(url.absoluteString)")
 
         switch method {
