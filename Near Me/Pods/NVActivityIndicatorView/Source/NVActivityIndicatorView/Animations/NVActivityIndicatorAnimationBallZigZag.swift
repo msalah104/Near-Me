@@ -25,11 +25,10 @@
 // SOFTWARE.
 //
 
-import UIKit
 import QuartzCore
+import UIKit
 
 class NVActivityIndicatorAnimationBallZigZag: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let circleSize: CGFloat = size.width / 5
         let duration: CFTimeInterval = 0.7
@@ -42,16 +41,16 @@ class NVActivityIndicatorAnimationBallZigZag: NVActivityIndicatorAnimationDelega
 
         animation.keyTimes = [0, 0.33, 0.66, 1]
         #if swift(>=4.2)
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+            animation.timingFunction = CAMediaTimingFunction(name: .linear)
         #else
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         #endif
 
         animation.values = [
             NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0)),
             NSValue(caTransform3D: CATransform3DMakeTranslation(-deltaX, -deltaY, 0)),
             NSValue(caTransform3D: CATransform3DMakeTranslation(deltaX, -deltaY, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0))
+            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0)),
         ]
         animation.duration = duration
         animation.repeatCount = HUGE
@@ -65,7 +64,7 @@ class NVActivityIndicatorAnimationBallZigZag: NVActivityIndicatorAnimationDelega
             NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0)),
             NSValue(caTransform3D: CATransform3DMakeTranslation(deltaX, deltaY, 0)),
             NSValue(caTransform3D: CATransform3DMakeTranslation(-deltaX, deltaY, 0)),
-            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0))
+            NSValue(caTransform3D: CATransform3DMakeTranslation(0, 0, 0)),
         ]
 
         // Draw circle 2

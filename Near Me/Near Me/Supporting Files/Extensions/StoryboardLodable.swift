@@ -1,9 +1,9 @@
 //
 //  StoryboardLodable.swift
-//  ItunesAssignment
+//  Near Me
 //
-//  Created by AmrFawaz on 4/6/20.
-//  Copyright © 2020 AmrFawaz. All rights reserved.
+//  Created by Mohammed Salah on 12/04/2020.
+//  Copyright © 2020 MSalah. All rights reserved.
 //
 
 import Foundation
@@ -20,4 +20,3 @@ extension NearMeStoryboardLodable where Self: UIViewController {
         return "NearLocation"
     }
 }
-

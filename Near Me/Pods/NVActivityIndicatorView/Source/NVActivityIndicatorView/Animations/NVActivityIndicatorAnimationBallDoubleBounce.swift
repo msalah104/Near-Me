@@ -28,9 +28,8 @@
 import UIKit
 
 class NVActivityIndicatorAnimationBallDoubleBounce: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
-        for index in (0...1) {
+        for index in 0 ... 1 {
             bouncingBall(in: layer, size: size, color: color, startingAt: CACurrentMediaTime() + Double(index))
         }
     }
@@ -43,9 +42,9 @@ class NVActivityIndicatorAnimationBallDoubleBounce: NVActivityIndicatorAnimation
         scaleAnimation.values = [-1, 0, -1]
 
         #if swift(>=4.2)
-        scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         #else
-        scaleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            scaleAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         #endif
         scaleAnimation.repeatCount = HUGE
         scaleAnimation.isRemovedOnCompletion = false

@@ -10,7 +10,6 @@
 import Foundation
 
 public class FileDestination: BaseDestination {
-
     public var logFileURL: URL?
     public var syncAfterEachWrite: Bool = false
     public var colored: Bool = false {
@@ -21,11 +20,11 @@ public class FileDestination: BaseDestination {
                 // uses the 256-color table from http://bit.ly/1W1qJuH
                 reset = "\u{001b}[0m"
                 escape = "\u{001b}[38;5;"
-                levelColor.verbose = "251m"     // silver
-                levelColor.debug = "35m"        // green
-                levelColor.info = "38m"         // blue
-                levelColor.warning = "178m"     // yellow
-                levelColor.error = "197m"       // red
+                levelColor.verbose = "251m" // silver
+                levelColor.debug = "35m" // green
+                levelColor.info = "38m" // blue
+                levelColor.warning = "178m" // yellow
+                levelColor.error = "197m" // red
             } else {
                 reset = ""
                 escape = ""
@@ -38,7 +37,7 @@ public class FileDestination: BaseDestination {
         }
     }
 
-    override public var defaultHashValue: Int {return 2}
+    public override var defaultHashValue: Int { return 2 }
     let fileManager = FileManager.default
     var fileHandle: FileHandle?
 
@@ -79,8 +78,8 @@ public class FileDestination: BaseDestination {
     }
 
     // append to file. uses full base class functionality
-    override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String,
-        file: String, function: String, line: Int, context: Any? = nil) -> String? {
+    public override func send(_ level: SwiftyBeaver.Level, msg: String, thread: String,
+                              file: String, function: String, line: Int, context: Any? = nil) -> String? {
         let formattedString = super.send(level, msg: msg, thread: thread, file: file, function: function, line: line, context: context)
 
         if let str = formattedString {
@@ -102,7 +101,6 @@ public class FileDestination: BaseDestination {
         guard let url = logFileURL else { return false }
         do {
             if fileManager.fileExists(atPath: url.path) == false {
-                
                 let directoryURL = url.deletingLastPathComponent()
                 if fileManager.fileExists(atPath: directoryURL.path) == false {
                     try fileManager.createDirectory(
@@ -110,17 +108,17 @@ public class FileDestination: BaseDestination {
                         withIntermediateDirectories: true
                     )
                 }
-                
+
                 // create file if not existing
                 let line = str + "\n"
                 try line.write(to: url, atomically: true, encoding: .utf8)
 
                 #if os(iOS) || os(watchOS)
-                if #available(iOS 10.0, watchOS 3.0, *) {
-                    var attributes = try fileManager.attributesOfItem(atPath: url.path)
-                    attributes[FileAttributeKey.protectionKey] = FileProtectionType.none
-                    try fileManager.setAttributes(attributes, ofItemAtPath: url.path)
-                }
+                    if #available(iOS 10.0, watchOS 3.0, *) {
+                        var attributes = try fileManager.attributesOfItem(atPath: url.path)
+                        attributes[FileAttributeKey.protectionKey] = FileProtectionType.none
+                        try fileManager.setAttributes(attributes, ofItemAtPath: url.path)
+                    }
                 #endif
             } else {
                 // append to end of file

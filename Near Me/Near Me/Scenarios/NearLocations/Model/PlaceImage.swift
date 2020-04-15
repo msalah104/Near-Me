@@ -8,15 +8,13 @@
 
 import UIKit
 
-struct  PlaceImage: Codable {
-    private var prefix:String?
-    private var suffix:String?
-    private var width:Int?
-    private var height:Int?
-    
+struct PlaceImage: Codable {
+    private var prefix: String?
+    private var suffix: String?
+    private var width: Int?
+    private var height: Int?
+
     var imageUrl: String {
-        get {
-            return "\(prefix ?? "")\(width ?? 0)x\(height ?? 0)\(suffix ?? "")"
-        }
+        return "\(prefix ?? "")\(width ?? 0)x\(height ?? 0)\(suffix ?? "")"
     }
 }

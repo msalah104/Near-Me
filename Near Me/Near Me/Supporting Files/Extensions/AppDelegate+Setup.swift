@@ -17,7 +17,6 @@ extension AppDelegate {
      Set up the depedency graph in the DI container
      */
     internal func setupDependencies() {
-        
         // services
         container.autoregister(LocationManager.self, initializer: LocationUpdater.init).inObjectScope(ObjectScope.container)
 
@@ -28,6 +27,5 @@ extension AppDelegate {
         container.storyboardInitCompleted(NearMeViewController.self) { r, c in
             c.viewModel = r.resolve(NearMeViewModel.self)
         }
-        
     }
 }

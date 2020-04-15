@@ -12,7 +12,7 @@ enum ResolutionError {
     case tooManyDependencies(Int)
     var message: String {
         switch self {
-        case .tooManyDependencies(let dependencyCount):
+        case let .tooManyDependencies(dependencyCount):
             return "⚠ Autoregistration is limited to maximum of \(maxDependencies) dependencies, tried to resolve \(dependencyCount). Use regular `register` method instead. "
         }
     }
@@ -20,32 +20,32 @@ enum ResolutionError {
 
 /// Shows warnings based on information parsed from initializers description
 
-func resolutionErrors<Service, Parameters>(forInitializer initializer: (Parameters) -> Service) -> [ResolutionError] {
+func resolutionErrors<Service, Parameters>(forInitializer _: (Parameters) -> Service) -> [ResolutionError] {
     #if os(Linux)
-        //Warnings are not supported on Linux
+        // Warnings are not supported on Linux
         return []
     #endif
     let parser = TypeParser(string: String(describing: Parameters.self))
     guard let type = parser.parseType() else { return [] }
-    
+
     let dependencies: [Type]
-    
-    //Multiple arguments
-    if case .tuple(let types) = type {
+
+    // Multiple arguments
+    if case let .tuple(types) = type {
         dependencies = types
-    //Single argument
-    } else if case .identifier(_) = type {
+        // Single argument
+    } else if case .identifier = type {
         dependencies = [type]
     } else {
         return []
     }
-    
-    var warnings: [ResolutionError]  = []
-    
+
+    var warnings: [ResolutionError] = []
+
     if dependencies.count > maxDependencies {
         warnings.append(.tooManyDependencies(dependencies.count))
     }
-    
+
     return warnings
 }
 

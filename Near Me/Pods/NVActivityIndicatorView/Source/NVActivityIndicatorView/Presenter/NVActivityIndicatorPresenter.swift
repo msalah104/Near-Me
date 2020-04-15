@@ -119,14 +119,14 @@ private struct NVActivityIndicatorPresenterStateWaitingToStart: NVActivityIndica
         presenter.waitingToStartGroup.leave()
     }
 
-    func stopAnimating(presenter: NVActivityIndicatorPresenter, _ fadeOutAnimation: FadeOutAnimation?) {
+    func stopAnimating(presenter: NVActivityIndicatorPresenter, _: FadeOutAnimation?) {
         presenter.state = .stopped
         presenter.waitingToStartGroup.leave()
     }
 }
 
 private struct NVActivityIndicatorPresenterStateAnimating: NVActivityIndicatorPresenterState {
-    func startAnimating(presenter: NVActivityIndicatorPresenter, _ fadeInAnimation: FadeInAnimation?) {
+    func startAnimating(presenter _: NVActivityIndicatorPresenter, _: FadeInAnimation?) {
         // Do nothing
     }
 
@@ -169,7 +169,7 @@ private struct NVActivityIndicatorPresenterStateStopped: NVActivityIndicatorPres
         presenter.waitingToStartGroup.enter()
     }
 
-    func stopAnimating(presenter: NVActivityIndicatorPresenter, _ fadeOutAnimation: FadeOutAnimation?) {
+    func stopAnimating(presenter _: NVActivityIndicatorPresenter, _: FadeOutAnimation?) {
         // Do nothing
     }
 }
@@ -270,7 +270,8 @@ public final class NVActivityIndicatorPresenter {
             frame: CGRect(x: 0, y: 0, width: activityData.size.width, height: activityData.size.height),
             type: activityData.type,
             color: activityData.color,
-            padding: activityData.padding)
+            padding: activityData.padding
+        )
 
         activityIndicatorView.startAnimating()
         activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
@@ -282,7 +283,7 @@ public final class NVActivityIndicatorPresenter {
             let yConstraint = NSLayoutConstraint(item: containerView, attribute: .centerY, relatedBy: .equal, toItem: activityIndicatorView, attribute: .centerY, multiplier: 1, constant: 0)
 
             containerView.addConstraints([xConstraint, yConstraint])
-            }())
+        }())
 
         messageLabel.font = activityData.messageFont
         messageLabel.textColor = activityData.textColor
@@ -295,12 +296,12 @@ public final class NVActivityIndicatorPresenter {
             let trailingConstraint = NSLayoutConstraint(item: containerView, attribute: .trailing, relatedBy: .equal, toItem: messageLabel, attribute: .trailing, multiplier: 1, constant: 8)
 
             containerView.addConstraints([leadingConstraint, trailingConstraint])
-            }())
+        }())
         ({
             let spacingConstraint = NSLayoutConstraint(item: messageLabel, attribute: .top, relatedBy: .equal, toItem: activityIndicatorView, attribute: .bottom, multiplier: 1, constant: activityData.messageSpacing)
 
             containerView.addConstraint(spacingConstraint)
-            }())
+        }())
 
         guard let keyWindow = UIApplication.shared.keyWindow else { return }
 
@@ -314,20 +315,20 @@ public final class NVActivityIndicatorPresenter {
             let bottomConstraint = NSLayoutConstraint(item: keyWindow, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0)
 
             keyWindow.addConstraints([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-            }())
+        }())
     }
 
     fileprivate func hide(_ fadeOutAnimation: FadeOutAnimation?) {
         for window in UIApplication.shared.windows {
             for item in window.subviews
                 where item.restorationIdentifier == restorationIdentifier {
-                    if let fadeOutAnimation = fadeOutAnimation {
-                        fadeOutAnimation(item) {
-                            item.removeFromSuperview()
-                        }
-                    } else {
+                if let fadeOutAnimation = fadeOutAnimation {
+                    fadeOutAnimation(item) {
                         item.removeFromSuperview()
                     }
+                } else {
+                    item.removeFromSuperview()
+                }
             }
         }
     }

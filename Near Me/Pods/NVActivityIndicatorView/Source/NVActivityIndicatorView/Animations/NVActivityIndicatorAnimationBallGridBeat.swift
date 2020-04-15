@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationBallGridBeat: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let circleSpacing: CGFloat = 2
         let circleSize = (size.width - circleSpacing * 2) / 3
@@ -38,9 +37,9 @@ class NVActivityIndicatorAnimationBallGridBeat: NVActivityIndicatorAnimationDele
         let beginTime = CACurrentMediaTime()
         let beginTimes = [0.36, 0.4, 0.68, 0.41, 0.71, -0.15, -0.12, 0.01, 0.32]
         #if swift(>=4.2)
-        let timingFunction = CAMediaTimingFunction(name: .default)
+            let timingFunction = CAMediaTimingFunction(name: .default)
         #else
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+            let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
         #endif
 
         // Animation

@@ -9,6 +9,7 @@ target 'Near Me' do
   pod 'Alamofire', '~> 4.9.1'
   pod 'PromiseKit', '~> 6.3.1'
   pod 'SwiftLint'
+  pod 'SwiftFormat/CLI'
   pod 'CodableAlamofire', '~> 1.1.2'
   pod 'SwiftyBeaver', '~> 1.8.4'
   pod 'AlamofireImage'

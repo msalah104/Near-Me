@@ -8,11 +8,10 @@
 
 import Foundation
 
-protocol LocationManager:AnyObject {
-    
-    func updateMeWhenLocationChange(_ me:LocationDelegate)
-    
-    func getMyCurrentLocation(_ me:LocationDelegate)
-    
-    func setUpdateDistnace(_ distance:Double)
+protocol LocationManager: AnyObject {
+    func updateMeWhenLocationChange(_ me: LocationDelegate)
+
+    func getMyCurrentLocation(_ me: LocationDelegate)
+
+    func setUpdateDistnace(_ distance: Double)
 }

@@ -7,21 +7,21 @@
 //
 
 #if canImport(FoundationNetworking)
-import struct FoundationNetworking.URLRequest
+    import struct FoundationNetworking.URLRequest
 #else
-import struct Foundation.URLRequest
+    import struct Foundation.URLRequest
 #endif
 
 /// Simple logging settings for RxCocoa library.
 public struct Logging {
     public typealias LogURLRequest = (URLRequest) -> Bool
-    
+
     /// Log URL requests to standard output in curl format.
-    public static var URLRequests: LogURLRequest =  { _ in
-    #if DEBUG
-        return true
-    #else
-        return false
-    #endif
+    public static var URLRequests: LogURLRequest = { _ in
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
     }
 }

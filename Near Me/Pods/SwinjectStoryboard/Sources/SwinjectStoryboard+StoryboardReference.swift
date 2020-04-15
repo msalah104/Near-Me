@@ -7,7 +7,6 @@
 //
 
 internal extension SwinjectStoryboard {
-
     static func pushInstantiatingStoryboard(_ storyboard: SwinjectStoryboard) {
         storyboardStack.append(storyboard)
     }
@@ -24,23 +23,25 @@ internal extension SwinjectStoryboard {
     static var referencingStoryboard: SwinjectStoryboard? {
         return storyboardStack.last
     }
-#if os(iOS) || os(tvOS)
-    class func createReferenced(name: String, bundle storyboardBundleOrNil: Bundle?) -> SwinjectStoryboard {
-        if let container = referencingStoryboard?.container.value {
-            return create(name: name, bundle: storyboardBundleOrNil, container: container)
-        } else {
-            return create(name: name, bundle: storyboardBundleOrNil)
+
+    #if os(iOS) || os(tvOS)
+        class func createReferenced(name: String, bundle storyboardBundleOrNil: Bundle?) -> SwinjectStoryboard {
+            if let container = referencingStoryboard?.container.value {
+                return create(name: name, bundle: storyboardBundleOrNil, container: container)
+            } else {
+                return create(name: name, bundle: storyboardBundleOrNil)
+            }
         }
-    }
-#elseif os(OSX)
-    class func createReferenced(name: NSStoryboard.Name, bundle storyboardBundleOrNil: Bundle?) -> SwinjectStoryboard {
-        if let container = referencingStoryboard?.container.value {
-            return create(name: name, bundle: storyboardBundleOrNil, container: container)
-        } else {
-            return create(name: name, bundle: storyboardBundleOrNil)
+
+    #elseif os(OSX)
+        class func createReferenced(name: NSStoryboard.Name, bundle storyboardBundleOrNil: Bundle?) -> SwinjectStoryboard {
+            if let container = referencingStoryboard?.container.value {
+                return create(name: name, bundle: storyboardBundleOrNil, container: container)
+            } else {
+                return create(name: name, bundle: storyboardBundleOrNil)
+            }
         }
-    }
-#endif
+    #endif
 }
 
 private var storyboardStack = [SwinjectStoryboard]()

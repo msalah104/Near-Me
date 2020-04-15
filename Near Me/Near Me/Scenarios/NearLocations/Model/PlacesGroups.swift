@@ -9,14 +9,13 @@
 import UIKit
 
 struct PlacesGroupsResponse: Codable {
-    var groups : [PlacesGroups]?
+    var groups: [PlacesGroups]?
 }
 
 struct PlacesGroups: Codable {
-    struct Item:Codable {
-        var venue:Place?
+    struct Item: Codable {
+        var venue: Place?
     }
-    
-    var items:[Item]?
-}
 
+    var items: [Item]?
+}

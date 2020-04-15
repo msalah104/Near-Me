@@ -266,7 +266,7 @@ public enum NVActivityIndicatorType: CaseIterable {
     case audioEqualizer
     /**
      Stroke.
-     
+
      - returns: Instance of NVActivityIndicatorAnimationCircleStrokeSpin.
      */
     case circleStrokeSpin
@@ -406,17 +406,18 @@ public final class NVActivityIndicatorView: UIView {
     }
 
     /// Default fade out animation.
-    public static var DEFAULT_FADE_OUT_ANIMATION: FadeOutAnimation = { (view, complete) in
+    public static var DEFAULT_FADE_OUT_ANIMATION: FadeOutAnimation = { view, complete in
         UIView.animate(withDuration: 0.25,
                        animations: {
-                        view.alpha = 0
-        },
+                           view.alpha = 0
+                       },
                        completion: { completed in
-                        if completed {
-                            complete()
-                        }
+                           if completed {
+                               complete()
+                           }
         })
     }
+
     // swiftlint:enable identifier_name
 
     /// Animation type.
@@ -443,7 +444,7 @@ public final class NVActivityIndicatorView: UIView {
     public var animating: Bool { return isAnimating }
 
     /// Current status of animation, read-only.
-    private(set) public var isAnimating: Bool = false
+    public private(set) var isAnimating: Bool = false
 
     /**
      Returns an object initialized from data in a given unarchiver.
@@ -496,7 +497,7 @@ public final class NVActivityIndicatorView: UIView {
     public override var bounds: CGRect {
         didSet {
             // setup the animation again for the new bounds
-            if oldValue != bounds && isAnimating {
+            if oldValue != bounds, isAnimating {
                 setUpAnimation()
             }
         }
@@ -548,9 +549,9 @@ public final class NVActivityIndicatorView: UIView {
     private final func setUpAnimation() {
         let animation: NVActivityIndicatorAnimationDelegate = type.animation()
         #if swift(>=4.2)
-        var animationRect = frame.inset(by: UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+            var animationRect = frame.inset(by: UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         #else
-        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
+            var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         #endif
         let minEdge = min(animationRect.width, animationRect.height)
 

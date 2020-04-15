@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationBallPulseSync: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let circleSpacing: CGFloat = 2
         let circleSize = (size.width - circleSpacing * 2) / 3
@@ -39,9 +38,9 @@ class NVActivityIndicatorAnimationBallPulseSync: NVActivityIndicatorAnimationDel
         let beginTime = CACurrentMediaTime()
         let beginTimes: [CFTimeInterval] = [0.07, 0.14, 0.21]
         #if swift(>=4.2)
-        let timingFunciton = CAMediaTimingFunction(name: .easeInEaseOut)
+            let timingFunciton = CAMediaTimingFunction(name: .easeInEaseOut)
         #else
-        let timingFunciton = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            let timingFunciton = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         #endif
 
         // Animation

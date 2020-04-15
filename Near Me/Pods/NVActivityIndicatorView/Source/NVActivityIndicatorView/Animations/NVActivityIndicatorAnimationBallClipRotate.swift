@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationBallClipRotate: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let duration: CFTimeInterval = 0.75
 
@@ -49,9 +48,9 @@ class NVActivityIndicatorAnimationBallClipRotate: NVActivityIndicatorAnimationDe
 
         animation.animations = [scaleAnimation, rotateAnimation]
         #if swift(>=4.2)
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+            animation.timingFunction = CAMediaTimingFunction(name: .linear)
         #else
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         #endif
         animation.duration = duration
         animation.repeatCount = HUGE

@@ -58,8 +58,8 @@ public struct DefaultDataResponse {
         data: Data?,
         error: Error?,
         timeline: Timeline = Timeline(),
-        metrics: AnyObject? = nil)
-    {
+        metrics _: AnyObject? = nil
+    ) {
         self.request = request
         self.response = response
         self.data = data
@@ -109,8 +109,8 @@ public struct DataResponse<Value> {
         response: HTTPURLResponse?,
         data: Data?,
         result: Result<Value>,
-        timeline: Timeline = Timeline())
-    {
+        timeline: Timeline = Timeline()
+    ) {
         self.request = request
         self.response = response
         self.data = data
@@ -131,7 +131,7 @@ extension DataResponse: CustomStringConvertible, CustomDebugStringConvertible {
     /// The debug textual representation used when written to an output stream, which includes the URL request, the URL
     /// response, the server data, the response serialization result and the timeline.
     public var debugDescription: String {
-        let requestDescription = request.map { "\($0.httpMethod ?? "GET") \($0)"} ?? "nil"
+        let requestDescription = request.map { "\($0.httpMethod ?? "GET") \($0)" } ?? "nil"
         let requestBody = request?.httpBody.map { String(decoding: $0, as: UTF8.self) } ?? "None"
         let responseDescription = response.map { "\($0)" } ?? "nil"
         let responseBody = data.map { String(decoding: $0, as: UTF8.self) } ?? "None"
@@ -300,8 +300,8 @@ public struct DefaultDownloadResponse {
         resumeData: Data?,
         error: Error?,
         timeline: Timeline = Timeline(),
-        metrics: AnyObject? = nil)
-    {
+        metrics _: AnyObject? = nil
+    ) {
         self.request = request
         self.response = response
         self.temporaryURL = temporaryURL
@@ -363,8 +363,8 @@ public struct DownloadResponse<Value> {
         destinationURL: URL?,
         resumeData: Data?,
         result: Result<Value>,
-        timeline: Timeline = Timeline())
-    {
+        timeline: Timeline = Timeline()
+    ) {
         self.request = request
         self.response = response
         self.temporaryURL = temporaryURL
@@ -388,7 +388,7 @@ extension DownloadResponse: CustomStringConvertible, CustomDebugStringConvertibl
     /// response, the temporary and destination URLs, the resume data, the response serialization result and the
     /// timeline.
     public var debugDescription: String {
-        let requestDescription = request.map { "\($0.httpMethod ?? "GET") \($0)"} ?? "nil"
+        let requestDescription = request.map { "\($0.httpMethod ?? "GET") \($0)" } ?? "nil"
         let requestBody = request?.httpBody.map { String(decoding: $0, as: UTF8.self) } ?? "None"
         let responseDescription = response.map { "\($0)" } ?? "nil"
 
@@ -543,32 +543,32 @@ extension Response {
 
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
 extension DefaultDataResponse: Response {
-#if !os(watchOS)
-    /// The task metrics containing the request / response statistics.
-    public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
-#endif
+    #if !os(watchOS)
+        /// The task metrics containing the request / response statistics.
+        public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
+    #endif
 }
 
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
 extension DataResponse: Response {
-#if !os(watchOS)
-    /// The task metrics containing the request / response statistics.
-    public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
-#endif
+    #if !os(watchOS)
+        /// The task metrics containing the request / response statistics.
+        public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
+    #endif
 }
 
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
 extension DefaultDownloadResponse: Response {
-#if !os(watchOS)
-    /// The task metrics containing the request / response statistics.
-    public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
-#endif
+    #if !os(watchOS)
+        /// The task metrics containing the request / response statistics.
+        public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
+    #endif
 }
 
 @available(iOS 10.0, macOS 10.12, tvOS 10.0, *)
 extension DownloadResponse: Response {
-#if !os(watchOS)
-    /// The task metrics containing the request / response statistics.
-    public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
-#endif
+    #if !os(watchOS)
+        /// The task metrics containing the request / response statistics.
+        public var metrics: URLSessionTaskMetrics? { return _metrics as? URLSessionTaskMetrics }
+    #endif
 }

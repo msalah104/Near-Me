@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationCubeTransition: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let squareSize = size.width / 5
         let x = (layer.bounds.size.width - size.width) / 2
@@ -39,9 +38,9 @@ class NVActivityIndicatorAnimationCubeTransition: NVActivityIndicatorAnimationDe
         let beginTime = CACurrentMediaTime()
         let beginTimes: [CFTimeInterval] = [0, -0.8]
         #if swift(>=4.2)
-        let timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            let timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         #else
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         #endif
 
         // Scale animation
@@ -62,7 +61,7 @@ class NVActivityIndicatorAnimationCubeTransition: NVActivityIndicatorAnimationDe
             NSValue(cgSize: CGSize(width: deltaX, height: 0)),
             NSValue(cgSize: CGSize(width: deltaX, height: deltaY)),
             NSValue(cgSize: CGSize(width: 0, height: deltaY)),
-            NSValue(cgSize: CGSize(width: 0, height: 0))
+            NSValue(cgSize: CGSize(width: 0, height: 0)),
         ]
         translateAnimation.duration = duration
 

@@ -1,5 +1,5 @@
-import Foundation
 import CoreFoundation
+import Foundation
 
 /**
  Runs the active run-loop until the provided promise resolves.
@@ -11,20 +11,20 @@ import CoreFoundation
  - Returns: The value of the resolved promise
  - Throws: An error, should the promise be rejected
  - See: `wait()`
-*/
+ */
 public func hang<T>(_ promise: Promise<T>) throws -> T {
-#if os(Linux) || os(Android)
-    // isMainThread is not yet implemented on Linux.
-    let runLoopModeRaw = RunLoopMode.defaultRunLoopMode.rawValue._bridgeToObjectiveC()
-    let runLoopMode: CFString = unsafeBitCast(runLoopModeRaw, to: CFString.self)
-#else
-    guard Thread.isMainThread else {
-        // hang doesn't make sense on threads that aren't the main thread.
-        // use `.wait()` on those threads.
-        fatalError("Only call hang() on the main thread.")
-    }
-    let runLoopMode: CFRunLoopMode = CFRunLoopMode.defaultMode
-#endif
+    #if os(Linux) || os(Android)
+        // isMainThread is not yet implemented on Linux.
+        let runLoopModeRaw = RunLoopMode.defaultRunLoopMode.rawValue._bridgeToObjectiveC()
+        let runLoopMode: CFString = unsafeBitCast(runLoopModeRaw, to: CFString.self)
+    #else
+        guard Thread.isMainThread else {
+            // hang doesn't make sense on threads that aren't the main thread.
+            // use `.wait()` on those threads.
+            fatalError("Only call hang() on the main thread.")
+        }
+        let runLoopMode: CFRunLoopMode = CFRunLoopMode.defaultMode
+    #endif
 
     if promise.isPending {
         var context = CFRunLoopSourceContext()
@@ -43,9 +43,9 @@ public func hang<T>(_ promise: Promise<T>) throws -> T {
     }
 
     switch promise.result! {
-    case .rejected(let error):
+    case let .rejected(error):
         throw error
-    case .fulfilled(let value):
+    case let .fulfilled(value):
         return value
     }
 }

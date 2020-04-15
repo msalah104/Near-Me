@@ -35,7 +35,6 @@ import UIKit
 public protocol NVActivityIndicatorViewable {}
 
 public extension NVActivityIndicatorViewable where Self: UIViewController {
-
     /// Current status of animation, read-only.
     var isAnimating: Bool { return NVActivityIndicatorPresenter.sharedInstance.isAnimating }
 
@@ -65,7 +64,8 @@ public extension NVActivityIndicatorViewable where Self: UIViewController {
         minimumDisplayTime: Int? = nil,
         backgroundColor: UIColor? = nil,
         textColor: UIColor? = nil,
-        fadeInAnimation: FadeInAnimation? = NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION) {
+        fadeInAnimation: FadeInAnimation? = NVActivityIndicatorView.DEFAULT_FADE_IN_ANIMATION
+    ) {
         let activityData = ActivityData(size: size,
                                         message: message,
                                         messageFont: messageFont,

@@ -7,5 +7,6 @@
 //
 
 // MARK: For auto migration to Swinject v1.
+
 @available(*, unavailable, renamed: "SwinjectStoryboardProtocol")
-public protocol SwinjectStoryboardType { }
+public protocol SwinjectStoryboardType {}

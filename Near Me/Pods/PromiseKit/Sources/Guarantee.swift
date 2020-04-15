@@ -1,10 +1,10 @@
-import class Foundation.Thread
 import Dispatch
+import class Foundation.Thread
 
 /**
  A `Guarantee` is a functional abstraction around an asynchronous operation that cannot error.
  - See: `Thenable`
-*/
+ */
 public class Guarantee<T>: Thenable {
     let box: Box<T>
 
@@ -18,28 +18,28 @@ public class Guarantee<T>: Thenable {
     }
 
     /// Returns a pending `Guarantee` that can be resolved with the provided closure’s parameter.
-    public init(resolver body: (@escaping(T) -> Void) -> Void) {
+    public init(resolver body: (@escaping (T) -> Void) -> Void) {
         box = EmptyBox()
         body(box.seal)
     }
 
     /// - See: `Thenable.pipe`
-    public func pipe(to: @escaping(Result<T>) -> Void) {
-        pipe{ to(.fulfilled($0)) }
+    public func pipe(to: @escaping (Result<T>) -> Void) {
+        pipe { to(.fulfilled($0)) }
     }
 
-    func pipe(to: @escaping(T) -> Void) {
+    func pipe(to: @escaping (T) -> Void) {
         switch box.inspect() {
         case .pending:
             box.inspect {
                 switch $0 {
-                case .pending(let handlers):
+                case let .pending(handlers):
                     handlers.append(to)
-                case .resolved(let value):
+                case let .resolved(value):
                     to(value)
                 }
             }
-        case .resolved(let value):
+        case let .resolved(value):
             to(value)
         }
     }
@@ -49,7 +49,7 @@ public class Guarantee<T>: Thenable {
         switch box.inspect() {
         case .pending:
             return nil
-        case .resolved(let value):
+        case let .resolved(value):
             return .fulfilled(value)
         }
     }
@@ -66,7 +66,7 @@ public class Guarantee<T>: Thenable {
 
 public extension Guarantee {
     @discardableResult
-    func done(on: DispatchQueue? = conf.Q.return, flags: DispatchWorkItemFlags? = nil, _ body: @escaping(T) -> Void) -> Guarantee<Void> {
+    func done(on: DispatchQueue? = conf.Q.return, flags: DispatchWorkItemFlags? = nil, _ body: @escaping (T) -> Void) -> Guarantee<Void> {
         let rg = Guarantee<Void>(.pending)
         pipe { (value: T) in
             on.async(flags: flags) {
@@ -76,7 +76,7 @@ public extension Guarantee {
         }
         return rg
     }
-    
+
     func get(on: DispatchQueue? = conf.Q.return, flags: DispatchWorkItemFlags? = nil, _ body: @escaping (T) -> Void) -> Guarantee<T> {
         return map(on: on, flags: flags) {
             body($0)
@@ -84,7 +84,7 @@ public extension Guarantee {
         }
     }
 
-    func map<U>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, _ body: @escaping(T) -> U) -> Guarantee<U> {
+    func map<U>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, _ body: @escaping (T) -> U) -> Guarantee<U> {
         let rg = Guarantee<U>(.pending)
         pipe { value in
             on.async(flags: flags) {
@@ -94,8 +94,8 @@ public extension Guarantee {
         return rg
     }
 
-	@discardableResult
-    func then<U>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, _ body: @escaping(T) -> Guarantee<U>) -> Guarantee<U> {
+    @discardableResult
+    func then<U>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, _ body: @escaping (T) -> Guarantee<U>) -> Guarantee<U> {
         let rg = Guarantee<U>(.pending)
         pipe { value in
             on.async(flags: flags) {
@@ -105,16 +105,15 @@ public extension Guarantee {
         return rg
     }
 
-    public func asVoid() -> Guarantee<Void> {
+    func asVoid() -> Guarantee<Void> {
         return map(on: nil) { _ in }
     }
-    
+
     /**
      Blocks this thread, so you know, don’t call this on a serial thread that
      any part of your chain may use. Like the main thread for example.
      */
-    public func wait() -> T {
-
+    func wait() -> T {
         if Thread.isMainThread {
             print("PromiseKit: warning: `wait()` called on main thread!")
         }
@@ -127,13 +126,12 @@ public extension Guarantee {
             pipe { (foo: T) in result = foo; group.leave() }
             group.wait()
         }
-        
+
         return result!
     }
 }
 
 public extension Guarantee where T: Sequence {
-
     /**
      `Guarantee<[T]>` => `T` -> `Guarantee<U>` => `Guaranetee<[U]>`
 
@@ -145,7 +143,7 @@ public extension Guarantee where T: Sequence {
              // $0 => [2,4,6]
          }
      */
-    func thenMap<U>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, _ transform: @escaping(T.Iterator.Element) -> Guarantee<U>) -> Guarantee<[U]> {
+    func thenMap<U>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, _ transform: @escaping (T.Iterator.Element) -> Guarantee<U>) -> Guarantee<[U]> {
         return then(on: on, flags: flags) {
             when(fulfilled: $0.map(transform))
         }.recover {
@@ -156,13 +154,12 @@ public extension Guarantee where T: Sequence {
 }
 
 #if swift(>=3.1)
-public extension Guarantee where T == Void {
-    convenience init() {
-        self.init(box: SealedBox(value: Void()))
+    public extension Guarantee where T == Void {
+        convenience init() {
+            self.init(box: SealedBox(value: Void()))
+        }
     }
-}
 #endif
-
 
 public extension DispatchQueue {
     /**
@@ -188,14 +185,13 @@ public extension DispatchQueue {
     }
 }
 
-
 #if os(Linux)
-import func CoreFoundation._CFIsMainThread
+    import func CoreFoundation._CFIsMainThread
 
-extension Thread {
-    // `isMainThread` is not implemented yet in swift-corelibs-foundation.
-    static var isMainThread: Bool {
-        return _CFIsMainThread()
+    extension Thread {
+        // `isMainThread` is not implemented yet in swift-corelibs-foundation.
+        static var isMainThread: Bool {
+            return _CFIsMainThread()
+        }
     }
-}
 #endif

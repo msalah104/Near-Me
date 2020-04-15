@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationLineSpinFadeLoader: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let lineSpacing: CGFloat = 2
         let lineSize = CGSize(width: (size.width - 4 * lineSpacing) / 5, height: (size.height - 2 * lineSpacing) / 3)
@@ -38,9 +37,9 @@ class NVActivityIndicatorAnimationLineSpinFadeLoader: NVActivityIndicatorAnimati
         let beginTime = CACurrentMediaTime()
         let beginTimes: [CFTimeInterval] = [0.12, 0.24, 0.36, 0.48, 0.6, 0.72, 0.84, 0.96]
         #if swift(>=4.2)
-        let timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            let timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         #else
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         #endif
 
         // Animation
@@ -75,13 +74,15 @@ class NVActivityIndicatorAnimationLineSpinFadeLoader: NVActivityIndicatorAnimati
             x: origin.x + radius * (cos(angle) + 1),
             y: origin.y + radius * (sin(angle) + 1),
             width: lineContainerSize.width,
-            height: lineContainerSize.height)
+            height: lineContainerSize.height
+        )
         let line = NVActivityIndicatorShape.line.layerWith(size: size, color: color)
         let lineFrame = CGRect(
             x: (lineContainerSize.width - size.width) / 2,
             y: (lineContainerSize.height - size.height) / 2,
             width: size.width,
-            height: size.height)
+            height: size.height
+        )
 
         lineContainer.frame = lineContainerFrame
         line.frame = lineFrame

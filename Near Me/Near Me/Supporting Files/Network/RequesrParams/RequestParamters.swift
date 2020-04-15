@@ -12,7 +12,6 @@ protocol RequestParamters: Codable {
     func getParamsAsJson() -> [String: Any]
 }
 
-
 extension RequestParamters {
     func getParamsAsJson() -> [String: Any] {
         let jsonEncoder = JSONEncoder()

@@ -2,13 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>client_id1</key>
-	<string>WI4OU2CJYQ51DZ11T5TARJDD2AODQQLFUR3G3KOATNN5V5OM</string>
-	<key>client_secret1</key>
-	<string>DTEDL0TYTUJE24ATQTXXQEHKXGNY5YXE3Z4RDSETYENSV1W3</string>
 	<key>client_id</key>
-	<string>HEORVZH24NJGEWWMJ5CAIU4X2JRY2OIIOBKIVDKZCTZEJJUZ</string>
+	<string>WI4OU2CJYQ51DZ11T5TARJDD2AODQQLFUR3G3KOATNN5V5OM</string>
 	<key>client_secret</key>
-	<string>3PRVIK3VKK2QYOKFEPE153SCIROTSOESFUENPMXFN04N5WVX</string>
+	<string>DTEDL0TYTUJE24ATQTXXQEHKXGNY5YXE3Z4RDSETYENSV1W3</string>
 </dict>
 </plist>

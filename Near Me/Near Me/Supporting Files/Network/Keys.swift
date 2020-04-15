@@ -9,7 +9,6 @@
 import UIKit
 
 struct ServerKeys {
-    
     // Url Params
     static let clientId = "client_id"
     static let clientSecret = "client_secret"
@@ -17,5 +16,4 @@ struct ServerKeys {
     static let apiVersion = "v"
     static let longAndLat = "ll"
     static let limit = "limit"
-    
 }

@@ -38,7 +38,6 @@ import Realm.Private
  run all of its blocks on the same thread.
  */
 public struct Realm {
-
     // MARK: Properties
 
     /// The `Schema` used by the Realm.
@@ -209,12 +208,12 @@ public struct Realm {
                If `block` throws, the function throws the propagated `ErrorType` instead.
      */
     @discardableResult
-    public func write<Result>(withoutNotifying tokens: [NotificationToken] = [], _ block: (() throws -> Result)) throws -> Result {
+    public func write<Result>(withoutNotifying tokens: [NotificationToken] = [], _ block: () throws -> Result) throws -> Result {
         beginWrite()
         var ret: Result!
         do {
             ret = try block()
-        } catch let error {
+        } catch {
             if isInWriteTransaction { cancelWrite() }
             throw error
         }
@@ -359,7 +358,7 @@ public struct Realm {
 
     /// :nodoc:
     @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
-    public func add(_ object: Object, update: Bool) {
+    public func add(_: Object, update _: Bool) {
         fatalError()
     }
 
@@ -387,7 +386,7 @@ public struct Realm {
      without a primary key.
      */
     public func add(_ object: Object, update: UpdatePolicy = .error) {
-        if update != .error && object.objectSchema.primaryKeyProperty == nil {
+        if update != .error, object.objectSchema.primaryKeyProperty == nil {
             throwRealmException("'\(object.objectSchema.className)' does not have a primary key and can not be updated")
         }
         RLMAddObjectToRealm(object, rlmRealm, RLMUpdatePolicy(rawValue: UInt(update.rawValue))!)
@@ -395,7 +394,7 @@ public struct Realm {
 
     /// :nodoc:
     @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
-    public func add<S: Sequence>(_ objects: S, update: Bool) where S.Iterator.Element: Object {
+    public func add<S: Sequence>(_: S, update _: Bool) where S.Iterator.Element: Object {
         fatalError()
     }
 
@@ -421,7 +420,7 @@ public struct Realm {
     /// :nodoc:
     @discardableResult
     @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
-    public func create<T: Object>(_ type: T.Type, value: Any = [:], update: Bool) -> T {
+    public func create<T: Object>(_: T.Type, value _: Any = [:], update _: Bool) -> T {
         fatalError()
     }
 
@@ -468,7 +467,7 @@ public struct Realm {
     /// :nodoc:
     @discardableResult
     @available(*, unavailable, message: "Pass .error, .modified or .all rather than a boolean. .error is equivalent to false and .all is equivalent to true.")
-    public func dynamicCreate(_ typeName: String, value: Any = [:], update: Bool) -> DynamicObject {
+    public func dynamicCreate(_: String, value _: Any = [:], update _: Bool) -> DynamicObject {
         fatalError()
     }
 
@@ -498,7 +497,6 @@ public struct Realm {
      or (if you are passing in an instance of an `Object` subclass) setting the corresponding
      property on `value` to nil.
 
-
      - warning: This method can only be called during a write transaction.
 
      - parameter className:  The class name of the object to create.
@@ -512,7 +510,7 @@ public struct Realm {
      */
     @discardableResult
     public func dynamicCreate(_ typeName: String, value: Any = [:], update: UpdatePolicy = .error) -> DynamicObject {
-        if update != .error && schema[typeName]?.primaryKeyProperty == nil {
+        if update != .error, schema[typeName]?.primaryKeyProperty == nil {
             throwRealmException("'\(typeName)' does not have a primary key and can not be updated")
         }
         return noWarnUnsafeBitCast(RLMCreateObjectInRealmWithValue(rlmRealm, typeName, value,
@@ -633,7 +631,7 @@ public struct Realm {
     public func object<Element: Object, KeyType>(ofType type: Element.Type, forPrimaryKey key: KeyType) -> Element? {
         return unsafeBitCast(RLMGetObject(rlmRealm, (type as Object.Type).className(),
                                           dynamicBridgeCast(fromSwift: key)) as! RLMObjectBase?,
-                             to: Optional<Element>.self)
+                             to: Element?.self)
     }
 
     /**
@@ -659,7 +657,7 @@ public struct Realm {
      :nodoc:
      */
     public func dynamicObject(ofType typeName: String, forPrimaryKey key: Any) -> DynamicObject? {
-        return unsafeBitCast(RLMGetObject(rlmRealm, typeName, key) as! RLMObjectBase?, to: Optional<DynamicObject>.self)
+        return unsafeBitCast(RLMGetObject(rlmRealm, typeName, key) as! RLMObjectBase?, to: DynamicObject?.self)
     }
 
     // MARK: Notifications

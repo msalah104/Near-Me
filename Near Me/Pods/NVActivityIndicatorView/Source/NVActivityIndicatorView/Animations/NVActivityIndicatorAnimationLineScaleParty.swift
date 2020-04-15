@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationLineScaleParty: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let lineSize = size.width / 7
         let x = (layer.bounds.size.width - size.width) / 2
@@ -37,9 +36,9 @@ class NVActivityIndicatorAnimationLineScaleParty: NVActivityIndicatorAnimationDe
         let beginTime = CACurrentMediaTime()
         let beginTimes: [CFTimeInterval] = [0.77, 0.29, 0.28, 0.74]
         #if swift(>=4.2)
-        let timingFunction = CAMediaTimingFunction(name: .default)
+            let timingFunction = CAMediaTimingFunction(name: .default)
         #else
-        let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+            let timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
         #endif
 
         // Animation

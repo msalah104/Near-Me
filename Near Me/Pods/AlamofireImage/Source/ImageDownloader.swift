@@ -26,9 +26,9 @@ import Alamofire
 import Foundation
 
 #if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import Cocoa
+    import Cocoa
 #endif
 
 /// The `RequestReceipt` is an object vended by the `ImageDownloader` when starting a download request. It can be used
@@ -84,12 +84,12 @@ open class ImageDownloader {
             handlerID: String,
             receiptID: String,
             filter: ImageFilter?,
-            completion: CompletionHandler?)
-        {
+            completion: CompletionHandler?
+        ) {
             self.request = request
-            self.urlID = ImageDownloader.urlIdentifier(for: request.request!)
+            urlID = ImageDownloader.urlIdentifier(for: request.request!)
             self.handlerID = handlerID
-            self.operations = [(receiptID: receiptID, filter: filter, completion: completion)]
+            operations = [(receiptID: receiptID, filter: filter, completion: completion)]
         }
     }
 
@@ -158,21 +158,21 @@ open class ImageDownloader {
         let imageDownloaderPath = "org.alamofire.imagedownloader"
 
         #if targetEnvironment(macCatalyst)
-        return URLCache(
-            memoryCapacity: memoryCapacity,
-            diskCapacity: diskCapacity,
-            directory: cacheDirectory?.appendingPathComponent(imageDownloaderPath)
-        )
+            return URLCache(
+                memoryCapacity: memoryCapacity,
+                diskCapacity: diskCapacity,
+                directory: cacheDirectory?.appendingPathComponent(imageDownloaderPath)
+            )
         #else
-        #if os(macOS)
-        return URLCache(memoryCapacity: memoryCapacity,
-                        diskCapacity: diskCapacity,
-                        diskPath: cacheDirectory?.appendingPathComponent(imageDownloaderPath).absoluteString)
-        #else
-        return URLCache(memoryCapacity: memoryCapacity,
-                        diskCapacity: diskCapacity,
-                        diskPath: imageDownloaderPath)
-        #endif
+            #if os(macOS)
+                return URLCache(memoryCapacity: memoryCapacity,
+                                diskCapacity: diskCapacity,
+                                diskPath: cacheDirectory?.appendingPathComponent(imageDownloaderPath).absoluteString)
+            #else
+                return URLCache(memoryCapacity: memoryCapacity,
+                                diskCapacity: diskCapacity,
+                                diskPath: imageDownloaderPath)
+            #endif
         #endif
     }
 
@@ -190,10 +190,10 @@ open class ImageDownloader {
         configuration: URLSessionConfiguration = ImageDownloader.defaultURLSessionConfiguration(),
         downloadPrioritization: DownloadPrioritization = .fifo,
         maximumActiveDownloads: Int = 4,
-        imageCache: ImageRequestCache? = AutoPurgingImageCache())
-    {
-        self.sessionManager = SessionManager(configuration: configuration)
-        self.sessionManager.startRequestsImmediately = false
+        imageCache: ImageRequestCache? = AutoPurgingImageCache()
+    ) {
+        sessionManager = SessionManager(configuration: configuration)
+        sessionManager.startRequestsImmediately = false
 
         self.downloadPrioritization = downloadPrioritization
         self.maximumActiveDownloads = maximumActiveDownloads
@@ -213,8 +213,8 @@ open class ImageDownloader {
         sessionManager: SessionManager,
         downloadPrioritization: DownloadPrioritization = .fifo,
         maximumActiveDownloads: Int = 4,
-        imageCache: ImageRequestCache? = AutoPurgingImageCache())
-    {
+        imageCache: ImageRequestCache? = AutoPurgingImageCache()
+    ) {
         self.sessionManager = sessionManager
         self.sessionManager.startRequestsImmediately = false
 
@@ -233,8 +233,8 @@ open class ImageDownloader {
     open func addAuthentication(
         user: String,
         password: String,
-        persistence: URLCredential.Persistence = .forSession)
-    {
+        persistence: URLCredential.Persistence = .forSession
+    ) {
         let credential = URLCredential(user: user, password: password, persistence: persistence)
         addAuthentication(usingCredential: credential)
     }
@@ -282,9 +282,9 @@ open class ImageDownloader {
         filter: ImageFilter? = nil,
         progress: ProgressHandler? = nil,
         progressQueue: DispatchQueue = DispatchQueue.main,
-        completion: CompletionHandler?)
-        -> RequestReceipt?
-    {
+        completion: CompletionHandler?
+    )
+        -> RequestReceipt? {
         var request: DataRequest!
 
         synchronizationQueue.sync {
@@ -356,7 +356,7 @@ open class ImageDownloader {
                     }
 
                     switch response.result {
-                    case .success(let image):
+                    case let .success(image):
                         var filteredImages: [String: Image] = [:]
 
                         for (_, filter, completion) in responseHandler.operations {
@@ -450,17 +450,17 @@ open class ImageDownloader {
         filter: ImageFilter? = nil,
         progress: ProgressHandler? = nil,
         progressQueue: DispatchQueue = DispatchQueue.main,
-        completion: CompletionHandler? = nil)
-        -> [RequestReceipt]
-    {
+        completion: CompletionHandler? = nil
+    )
+        -> [RequestReceipt] {
         #if swift(>=4.1)
-        return urlRequests.compactMap {
-            download($0, filter: filter, progress: progress, progressQueue: progressQueue, completion: completion)
-        }
+            return urlRequests.compactMap {
+                download($0, filter: filter, progress: progress, progressQueue: progressQueue, completion: completion)
+            }
         #else
-        return urlRequests.flatMap {
-            download($0, filter: filter, progress: progress, progressQueue: progressQueue, completion: completion)
-        }
+            return urlRequests.flatMap {
+                download($0, filter: filter, progress: progress, progressQueue: progressQueue, completion: completion)
+            }
         #endif
     }
 
@@ -477,9 +477,9 @@ open class ImageDownloader {
             guard let responseHandler = self.responseHandlers[urlID] else { return }
 
             #if swift(>=4.2)
-            let index = responseHandler.operations.firstIndex { $0.receiptID == requestReceipt.receiptID }
+                let index = responseHandler.operations.firstIndex { $0.receiptID == requestReceipt.receiptID }
             #else
-            let index = responseHandler.operations.index { $0.receiptID == requestReceipt.receiptID }
+                let index = responseHandler.operations.index { $0.receiptID == requestReceipt.receiptID }
             #endif
 
             if let index = index {
@@ -495,7 +495,7 @@ open class ImageDownloader {
                 DispatchQueue.main.async { operation.completion?(response) }
             }
 
-            if responseHandler.operations.isEmpty && requestReceipt.request.task?.state == .suspended {
+            if responseHandler.operations.isEmpty, requestReceipt.request.task?.state == .suspended {
                 requestReceipt.request.cancel()
                 self.responseHandlers.removeValue(forKey: urlID)
             }
@@ -538,7 +538,7 @@ open class ImageDownloader {
     }
 
     func safelyDecrementActiveRequestCount() {
-        self.synchronizationQueue.sync {
+        synchronizationQueue.sync {
             if self.activeRequestCount > 0 {
                 self.activeRequestCount -= 1
             }

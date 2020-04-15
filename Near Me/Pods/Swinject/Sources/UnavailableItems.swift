@@ -7,6 +7,7 @@
 //
 
 // MARK: For auto migration from Swinject v1 to v2.
+
 extension ObjectScope {
     @available(*, unavailable, renamed: "transient")
     public static let none = transient
@@ -16,10 +17,10 @@ extension ObjectScope {
 }
 
 @available(*, unavailable, renamed: "Resolver")
-public protocol ResolverType { }
+public protocol ResolverType {}
 
 @available(*, unavailable, renamed: "Assembly")
-public protocol AssemblyType { }
+public protocol AssemblyType {}
 
 @available(*, unavailable, renamed: "ServiceKeyOption")
-public protocol ServiceKeyOptionType { }
+public protocol ServiceKeyOptionType {}

@@ -9,27 +9,27 @@
 import Swinject
 
 #if os(iOS) || os(OSX) || os(tvOS)
-internal struct SwinjectStoryboardOption: ServiceKeyOption {
-    internal let controllerType: String
-    
-    internal init(controllerType: Container.Controller.Type) {
-        self.controllerType = String(reflecting: controllerType)
-    }
-    
-    internal func isEqualTo(_ another: ServiceKeyOption) -> Bool {
-        guard let another = another as? SwinjectStoryboardOption else {
-            return false
+    internal struct SwinjectStoryboardOption: ServiceKeyOption {
+        internal let controllerType: String
+
+        internal init(controllerType: Container.Controller.Type) {
+            self.controllerType = String(reflecting: controllerType)
         }
-        
-        return self.controllerType == another.controllerType
+
+        internal func isEqualTo(_ another: ServiceKeyOption) -> Bool {
+            guard let another = another as? SwinjectStoryboardOption else {
+                return false
+            }
+
+            return controllerType == another.controllerType
+        }
+
+        internal var hashValue: Int {
+            return controllerType.hashValue
+        }
+
+        internal var description: String {
+            return "Storyboard: \(controllerType)"
+        }
     }
-    
-    internal var hashValue: Int {
-        return controllerType.hashValue
-    }
-    
-    internal var description: String {
-        return "Storyboard: \(controllerType)"
-    }
-}
 #endif

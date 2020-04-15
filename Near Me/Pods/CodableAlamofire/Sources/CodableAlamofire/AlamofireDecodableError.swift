@@ -20,12 +20,11 @@ public enum AlamofireDecodableError: Error {
 }
 
 extension AlamofireDecodableError: LocalizedError {
-    
     public var errorDescription: String? {
         switch self {
-        case .invalidKeyPath:   return "Nested object doesn't exist by this keyPath."
-        case .emptyKeyPath:     return "KeyPath can not be empty."
-        case .invalidJSON:      return "Invalid nested json."
+        case .invalidKeyPath: return "Nested object doesn't exist by this keyPath."
+        case .emptyKeyPath: return "KeyPath can not be empty."
+        case .invalidJSON: return "Invalid nested json."
         }
     }
 }

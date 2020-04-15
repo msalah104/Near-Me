@@ -7,56 +7,48 @@
 
 import Foundation
 #if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+    import UIKit
 
-//public typealias LottieView = UIView
+    // public typealias LottieView = UIView
 
-open class LottieView: UIView {
+    open class LottieView: UIView {
+        var viewLayer: CALayer? {
+            return layer
+        }
 
-  var viewLayer: CALayer? {
-    return layer
-  }
+        func layoutAnimation() {}
 
-  func layoutAnimation() {
+        func animationMovedToWindow() {}
 
-  }
-  
-  func animationMovedToWindow() {
-    
-  }
-  
-  open override func didMoveToWindow() {
-    super.didMoveToWindow()
-    animationMovedToWindow()
-  }
-  
-  var screenScale: CGFloat {
-    return UIScreen.main.scale
-  }
+        open override func didMoveToWindow() {
+            super.didMoveToWindow()
+            animationMovedToWindow()
+        }
 
-  func commonInit() {
-    contentMode = .scaleAspectFit
-    clipsToBounds = true
-    NotificationCenter.default.addObserver(self, selector: #selector(animationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(animationWillMoveToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-  }
+        var screenScale: CGFloat {
+            return UIScreen.main.scale
+        }
 
-  open override var contentMode: UIView.ContentMode {
-    didSet {
-      setNeedsLayout()
+        func commonInit() {
+            contentMode = .scaleAspectFit
+            clipsToBounds = true
+            NotificationCenter.default.addObserver(self, selector: #selector(animationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(animationWillMoveToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        }
+
+        open override var contentMode: UIView.ContentMode {
+            didSet {
+                setNeedsLayout()
+            }
+        }
+
+        open override func layoutSubviews() {
+            super.layoutSubviews()
+            layoutAnimation()
+        }
+
+        @objc func animationWillMoveToBackground() {}
+
+        @objc func animationWillEnterForeground() {}
     }
-  }
-
-  open override func layoutSubviews() {
-    super.layoutSubviews()
-    self.layoutAnimation()
-  }
-  
-  @objc func animationWillMoveToBackground() {
-  }
-  
-  @objc func animationWillEnterForeground() {
-  }
-  
-}
 #endif

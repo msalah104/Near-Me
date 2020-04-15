@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationBallSpinFadeLoader: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let circleSpacing: CGFloat = -2
         let circleSize = (size.width - 4 * circleSpacing) / 5
@@ -57,9 +56,9 @@ class NVActivityIndicatorAnimationBallSpinFadeLoader: NVActivityIndicatorAnimati
 
         animation.animations = [scaleAnimation, opacityAnimaton]
         #if swift(>=4.2)
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
+            animation.timingFunction = CAMediaTimingFunction(name: .linear)
         #else
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         #endif
         animation.duration = duration
         animation.repeatCount = HUGE
@@ -86,7 +85,8 @@ class NVActivityIndicatorAnimationBallSpinFadeLoader: NVActivityIndicatorAnimati
             x: origin.x + radius * (cos(angle) + 1),
             y: origin.y + radius * (sin(angle) + 1),
             width: size,
-            height: size)
+            height: size
+        )
 
         circle.frame = frame
 

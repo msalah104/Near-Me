@@ -10,7 +10,7 @@
 import Foundation
 
 #if canImport(FoundationNetworking)
-import FoundationNetworking
+    import FoundationNetworking
 #endif
 
 // platform-dependent import frameworks to get device details
@@ -19,17 +19,16 @@ import FoundationNetworking
 #if os(iOS) || os(tvOS) || os(watchOS)
     import UIKit
     var DEVICE_MODEL: String {
-        get {
-            var systemInfo = utsname()
-            uname(&systemInfo)
-            let machineMirror = Mirror(reflecting: systemInfo.machine)
-            let identifier = machineMirror.children.reduce("") { identifier, element in
-                guard let value = element.value as? Int8, value != 0 else { return identifier }
-                return identifier + String(UnicodeScalar(UInt8(value)))
-            }
-            return identifier
+        var systemInfo = utsname()
+        uname(&systemInfo)
+        let machineMirror = Mirror(reflecting: systemInfo.machine)
+        let identifier = machineMirror.children.reduce("") { identifier, element in
+            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            return identifier + String(UnicodeScalar(UInt8(value)))
         }
+        return identifier
     }
+
 #else
     let DEVICE_MODEL = ""
 #endif
@@ -42,7 +41,6 @@ import FoundationNetworking
 #endif
 
 public class SBPlatformDestination: BaseDestination {
-
     public var appID = ""
     public var appSecret = ""
     public var encryptionKey = ""
@@ -56,8 +54,9 @@ public class SBPlatformDestination: BaseDestination {
         public var info = 5
         public var warning = 8
         public var error = 10
-        public var threshold = 10  // send to server if points reach that value
+        public var threshold = 10 // send to server if points reach that value
     }
+
     public var sendingPoints = SendingPoints()
     public var showNSLog = false // executes toNSLog statements to debug the class
     var points = 0
@@ -67,8 +66,8 @@ public class SBPlatformDestination: BaseDestination {
     public var sendingFileURL = URL(fileURLWithPath: "")
     public var analyticsFileURL = URL(fileURLWithPath: "")
 
-    private let minAllowedThreshold = 1  // over-rules SendingPoints.Threshold
-    private let maxAllowedThreshold = 1000  // over-rules SendingPoints.Threshold
+    private let minAllowedThreshold = 1 // over-rules SendingPoints.Threshold
+    private let maxAllowedThreshold = 1000 // over-rules SendingPoints.Threshold
     private var sendingInProgress = false
     private var initialSending = true
 
@@ -76,7 +75,7 @@ public class SBPlatformDestination: BaseDestination {
     var uuid = ""
 
     // destination
-    override public var defaultHashValue: Int {return 3}
+    public override var defaultHashValue: Int { return 3 }
     let fileManager = FileManager.default
     let isoDateFormatter = DateFormatter()
 
@@ -153,9 +152,8 @@ public class SBPlatformDestination: BaseDestination {
     }
 
     // append to file, each line is a JSON dict
-    override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String,
-        file: String, function: String, line: Int, context: Any? = nil) -> String? {
-
+    public override func send(_ level: SwiftyBeaver.Level, msg: String, thread: String,
+                              file: String, function: String, line: Int, context _: Any? = nil) -> String? {
         var jsonString: String?
 
         let dict: [String: Any] = [
@@ -165,7 +163,8 @@ public class SBPlatformDestination: BaseDestination {
             "thread": thread,
             "fileName": file.components(separatedBy: "/").last!,
             "function": function,
-            "line": line]
+            "line": line,
+        ]
 
         jsonString = jsonStringFromDict(dict)
 
@@ -208,7 +207,6 @@ public class SBPlatformDestination: BaseDestination {
 
     /// does a (manual) sending attempt of all unsent log entries to SwiftyBeaver Platform
     public func sendNow() {
-
         if sendFileExists() {
             toNSLog("reset points to 0")
             points = 0
@@ -220,7 +218,7 @@ public class SBPlatformDestination: BaseDestination {
 
         if !sendingInProgress {
             sendingInProgress = true
-            //let (jsonString, lines) = logsFromFile(sendingFileURL)
+            // let (jsonString, lines) = logsFromFile(sendingFileURL)
             var lines = 0
 
             guard let logEntries = logsFromFile(sendingFileURL) else {
@@ -269,23 +267,21 @@ public class SBPlatformDestination: BaseDestination {
 
     /// sends a string to the SwiftyBeaver Platform server, returns ok if status 200 and HTTP status
     func sendToServerAsync(_ str: String?, complete: @escaping (_ ok: Bool, _ status: Int) -> Void) {
-
         let timeout = 10.0
 
         if let payload = str, let queue = self.queue, let serverURL = serverURL {
-
             // create operation queue which uses current serial queue of destination
             let operationQueue = OperationQueue()
             operationQueue.underlyingQueue = queue
 
             let session = URLSession(configuration:
                 URLSessionConfiguration.default,
-                delegate: nil, delegateQueue: operationQueue)
+                                     delegate: nil, delegateQueue: operationQueue)
 
             toNSLog("assembling request ...")
 
-             // assemble request
-             var request = URLRequest(url: serverURL,
+            // assemble request
+            var request = URLRequest(url: serverURL,
                                      cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                      timeoutInterval: timeout)
             request.httpMethod = "POST"
@@ -294,18 +290,18 @@ public class SBPlatformDestination: BaseDestination {
 
             // basic auth header (just works on Linux for Swift 3.1+, macOS is fine)
             guard let credentials = "\(appID):\(appSecret)".data(using: String.Encoding.utf8) else {
-                    toNSLog("Error! Could not set basic auth header")
-                    return complete(false, 0)
+                toNSLog("Error! Could not set basic auth header")
+                return complete(false, 0)
             }
 
             #if os(Linux)
-            let base64Credentials = Base64.encode([UInt8](credentials))
+                let base64Credentials = Base64.encode([UInt8](credentials))
             #else
-            let base64Credentials = credentials.base64EncodedString(options: [])
+                let base64Credentials = credentials.base64EncodedString(options: [])
             #endif
             request.setValue("Basic \(base64Credentials)", forHTTPHeaderField: "Authorization")
             //toNSLog("\nrequest:")
-            //print(request)
+            // print(request)
 
             // POST parameters
             let params = ["payload": payload]
@@ -347,13 +343,12 @@ public class SBPlatformDestination: BaseDestination {
             }
             task.resume()
             session.finishTasksAndInvalidate()
-            //while true {} // commenting this line causes a crash on Linux unit tests?!?
+            // while true {} // commenting this line causes a crash on Linux unit tests?!?
         }
     }
 
     /// returns sending points based on level
     func sendingPointsForLevel(_ level: SwiftyBeaver.Level) -> Int {
-
         switch level {
         case .debug:
             return sendingPoints.debug
@@ -419,12 +414,12 @@ public class SBPlatformDestination: BaseDestination {
             var dicts = [[String: Any]()] // array of dictionaries
             for lineJSON in linesArray {
                 lines += 1
-                if lineJSON.firstChar == "{" && lineJSON.lastChar == "}" {
+                if lineJSON.firstChar == "{", lineJSON.lastChar == "}" {
                     // try to parse json string into dict
                     if let data = lineJSON.data(using: .utf8) {
                         do {
                             if let dict = try JSONSerialization.jsonObject(with: data,
-                                options: .mutableContainers) as? [String: Any] {
+                                                                           options: .mutableContainers) as? [String: Any] {
                                 if !dict.isEmpty {
                                     dicts.append(dict)
                                 }
@@ -488,12 +483,11 @@ public class SBPlatformDestination: BaseDestination {
     }
 
     /// returns (updated) analytics dict, optionally loaded from file.
-    func analytics(_ url: URL, update: Bool = false) -> [String: Any] {
-
+    func analytics(_: URL, update: Bool = false) -> [String: Any] {
         var dict = [String: Any]()
         let now = NSDate().timeIntervalSince1970
 
-        uuid =  NSUUID().uuidString
+        uuid = NSUUID().uuidString
         dict["uuid"] = uuid
         dict["firstStart"] = now
         dict["lastStart"] = now
@@ -527,7 +521,7 @@ public class SBPlatformDestination: BaseDestination {
                 uuid = val
             }
             if let val = loadedDict["userName"] as? String {
-                if update && !analyticsUserName.isEmpty {
+                if update, !analyticsUserName.isEmpty {
                     dict["userName"] = analyticsUserName
                 } else {
                     if !val.isEmpty {
@@ -548,7 +542,7 @@ public class SBPlatformDestination: BaseDestination {
     /// Returns the current app version string (like 1.2.5) or empty string on error
     func appVersion() -> String {
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
-                return version
+            return version
         }
         return ""
     }
@@ -569,7 +563,7 @@ public class SBPlatformDestination: BaseDestination {
             let fileContent = try String(contentsOfFile: url.path, encoding: .utf8)
             if let data = fileContent.data(using: .utf8) {
                 return try JSONSerialization.jsonObject(with: data,
-                                    options: .mutableContainers) as? [String: Any]
+                                                        options: .mutableContainers) as? [String: Any]
             }
         } catch {
             toNSLog("SwiftyBeaver Platform Destination could not read file \(url)")
@@ -603,7 +597,6 @@ public class SBPlatformDestination: BaseDestination {
 
     /// returns the current thread name
     class func threadName() -> String {
-
         #if os(Linux)
             // on 9/30/2016 not yet implemented in server-side Swift:
             // > import Foundation

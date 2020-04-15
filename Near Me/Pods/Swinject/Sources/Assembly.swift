@@ -10,7 +10,6 @@
 /// the user to swap out different implementations of `Services` by providing different `Assembly` instances
 /// to the `Assembler`
 public protocol Assembly {
-
     /// Provide hook for `Assembler` to load Services into the provided container
     ///
     /// - parameter container: the container provided by the `Assembler`
@@ -26,7 +25,7 @@ public protocol Assembly {
 }
 
 public extension Assembly {
-    func loaded(resolver: Resolver) {
+    func loaded(resolver _: Resolver) {
         // no-op
     }
 }

@@ -28,6 +28,7 @@ PODS:
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
+  - SwiftFormat/CLI (0.44.7)
   - SwiftLint (0.39.2)
   - SwiftyBeaver (1.8.4)
   - Swinject (2.6.2)
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - RealmSwift
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
+  - SwiftFormat/CLI
   - SwiftLint
   - SwiftyBeaver (~> 1.8.4)
   - Swinject (~> 2.6.0)
@@ -65,6 +67,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - SwiftFormat
     - SwiftLint
     - SwiftyBeaver
     - Swinject
@@ -83,12 +86,13 @@ SPEC CHECKSUMS:
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SwiftFormat: fd97e27b8de5a46c9d1988bf1db1dc92e79f86a3
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
   Swinject: cf7458774b1b00323080a9c67e47a1ee7f9d2af1
   SwinjectAutoregistration: d0de7e48db3601b8b130f2f84e5a8399e0224135
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: bd607179e939d3a722418b566b27ee55943de8ed
+PODFILE CHECKSUM: 322cdbef2a49bf5fe2f79490e53f94ed6f3d6d18
 
 COCOAPODS: 1.8.4

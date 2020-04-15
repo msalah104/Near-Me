@@ -16,6 +16,7 @@
 		6A554332244531DE00003DD0 /* PlaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A554331244531DE00003DD0 /* PlaceImage.swift */; };
 		6A5543342445335A00003DD0 /* PlaceImageRequestParamters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */; };
 		6A55433724473E1800003DD0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55433624473E1800003DD0 /* BaseViewController.swift */; };
+		6A55433B2447871500003DD0 /* NearMeUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55433A2447871500003DD0 /* NearMeUserDefaults.swift */; };
 		6A91D6302443556200F1631C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D62F2443556200F1631C /* AppDelegate.swift */; };
 		6A91D6372443556200F1631C /* NearLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D6352443556200F1631C /* NearLocation.storyboard */; };
 		6A91D6392443556400F1631C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D6382443556400F1631C /* Assets.xcassets */; };
@@ -33,7 +34,6 @@
 		6A91D66724436EED00F1631C /* PlacesGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D66624436EED00F1631C /* PlacesGroups.swift */; };
 		6A91D66924436F3400F1631C /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D66824436F3400F1631C /* Place.swift */; };
 		6A91D66B2443754E00F1631C /* NearCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D66A2443754E00F1631C /* NearCoordinator.swift */; };
-		6A91D66E244375E100F1631C /* UIStorybaord+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D66D244375E100F1631C /* UIStorybaord+Extension.swift */; };
 		6A91D671244387A000F1631C /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D66F244387A000F1631C /* PlaceTableViewCell.swift */; };
 		6A91D672244387A000F1631C /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D670244387A000F1631C /* PlaceTableViewCell.xib */; };
 		6A91D674244389C500F1631C /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D673244389C500F1631C /* NearMeViewController.swift */; };
@@ -55,6 +55,7 @@
 		6A554331244531DE00003DD0 /* PlaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImage.swift; sourceTree = "<group>"; };
 		6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageRequestParamters.swift; sourceTree = "<group>"; };
 		6A55433624473E1800003DD0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		6A55433A2447871500003DD0 /* NearMeUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeUserDefaults.swift; sourceTree = "<group>"; };
 		6A91D62C2443556200F1631C /* Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A91D62F2443556200F1631C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A91D6362443556200F1631C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NearLocation.storyboard; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		6A91D66624436EED00F1631C /* PlacesGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesGroups.swift; sourceTree = "<group>"; };
 		6A91D66824436F3400F1631C /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		6A91D66A2443754E00F1631C /* NearCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearCoordinator.swift; sourceTree = "<group>"; };
-		6A91D66D244375E100F1631C /* UIStorybaord+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStorybaord+Extension.swift"; sourceTree = "<group>"; };
 		6A91D66F244387A000F1631C /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
 		6A91D670244387A000F1631C /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
 		6A91D673244389C500F1631C /* NearMeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
@@ -107,13 +107,6 @@
 				159ED27C01A5335CAF83821D /* Pods-Near Me.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		6A5543282444EC4F00003DD0 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		6A55433524473DEA00003DD0 /* Base */ = {
@@ -173,6 +166,7 @@
 				6A91D67D2443D47200F1631C /* LocationUpdater.swift */,
 				6A91D64524435CFF00F1631C /* Configurations.swift */,
 				6A91D67F2443D8B000F1631C /* LocationManager.swift */,
+				6A55433A2447871500003DD0 /* NearMeUserDefaults.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -180,7 +174,6 @@
 		6A91D6482443633500F1631C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				6A5543282444EC4F00003DD0 /* Models */,
 				6A91D6622443690400F1631C /* RequesrParams */,
 				6A91D64A2443633500F1631C /* APIs */,
 				6A91D64B2443633500F1631C /* Requestable.swift */,
@@ -291,7 +284,6 @@
 			children = (
 				6A91D67B2443C5B500F1631C /* StoryboardLodable.swift */,
 				6A91D6792443C59200F1631C /* Container+Extension.swift */,
-				6A91D66D244375E100F1631C /* UIStorybaord+Extension.swift */,
 				6A91D6772443BEA000F1631C /* AppDelegate+Setup.swift */,
 				6A5543262444DA1000003DD0 /* UIViewController+Extension.swift */,
 			);
@@ -318,6 +310,8 @@
 				6A91D6292443556200F1631C /* Frameworks */,
 				6A91D62A2443556200F1631C /* Resources */,
 				AF4368CA47F0906B92F915AE /* [CP] Embed Pods Frameworks */,
+				6A554338244783A400003DD0 /* ShellScript */,
+				6A5543392447843200003DD0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -399,6 +393,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6A554338244783A400003DD0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		6A5543392447843200003DD0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
 		AF4368CA47F0906B92F915AE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,7 +463,6 @@
 				6A91D6532443633500F1631C /* Requestable.swift in Sources */,
 				6A91D6802443D8B000F1631C /* LocationManager.swift in Sources */,
 				6A91D66724436EED00F1631C /* PlacesGroups.swift in Sources */,
-				6A91D66E244375E100F1631C /* UIStorybaord+Extension.swift in Sources */,
 				6A91D6592443633500F1631C /* CustomError.swift in Sources */,
 				6A91D6582443633500F1631C /* Api.swift in Sources */,
 				6A554330244531D200003DD0 /* PlaceImageResponse.swift in Sources */,
@@ -448,6 +475,7 @@
 				6A91D64624435CFF00F1631C /* Configurations.swift in Sources */,
 				6A91D6572443633500F1631C /* FoursquareApi.swift in Sources */,
 				6A91D67E2443D47200F1631C /* LocationUpdater.swift in Sources */,
+				6A55433B2447871500003DD0 /* NearMeUserDefaults.swift in Sources */,
 				6A55432C2444EE0700003DD0 /* FourSquarRequestParamters.swift in Sources */,
 				6A91D6762443906C00F1631C /* NearMeViewModel.swift in Sources */,
 				6A91D6782443BEA000F1631C /* AppDelegate+Setup.swift in Sources */,

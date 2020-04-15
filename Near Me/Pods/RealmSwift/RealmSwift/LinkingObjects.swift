@@ -70,7 +70,7 @@ public struct LinkingObjects<Element: Object> {
         if realm == nil {
             var this = self
             return withUnsafePointer(to: &this) {
-                return "LinkingObjects<\(Element.className())> <\($0)> (\n\n)"
+                "LinkingObjects<\(Element.className())> <\($0)> (\n\n)"
             }
         }
         return RLMDescriptionWithMaxDepth("LinkingObjects", rlmResults, RLMDescriptionMaxDepth)
@@ -119,10 +119,10 @@ public struct LinkingObjects<Element: Object> {
     }
 
     /// Returns the first object in the linking objects, or `nil` if the linking objects are empty.
-    public var first: Element? { return unsafeBitCast(rlmResults.firstObject(), to: Optional<Element>.self) }
+    public var first: Element? { return unsafeBitCast(rlmResults.firstObject(), to: Element?.self) }
 
     /// Returns the last object in the linking objects, or `nil` if the linking objects are empty.
-    public var last: Element? { return unsafeBitCast(rlmResults.lastObject(), to: Optional<Element>.self) }
+    public var last: Element? { return unsafeBitCast(rlmResults.lastObject(), to: Element?.self) }
 
     // MARK: KVC
 
@@ -209,7 +209,7 @@ public struct LinkingObjects<Element: Object> {
      */
     public func sorted<S: Sequence>(by sortDescriptors: S) -> Results<Element>
         where S.Iterator.Element == SortDescriptor {
-            return Results(rlmResults.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
+        return Results(rlmResults.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
     // MARK: Aggregate Operations
@@ -358,20 +358,20 @@ extension LinkingObjects: RealmCollection {
     public var endIndex: Int { return count }
 
     public func index(after: Int) -> Int {
-      return after + 1
+        return after + 1
     }
 
     public func index(before: Int) -> Int {
-      return before - 1
+        return before - 1
     }
 
     /// :nodoc:
     public func _observe(_ block: @escaping (RealmCollectionChange<AnyRealmCollection<Element>>) -> Void) ->
         NotificationToken {
-            let anyCollection = AnyRealmCollection(self)
-            return rlmResults.addNotificationBlock { _, change, error in
-                block(RealmCollectionChange.fromObjc(value: anyCollection, change: change, error: error))
-            }
+        let anyCollection = AnyRealmCollection(self)
+        return rlmResults.addNotificationBlock { _, change, error in
+            block(RealmCollectionChange.fromObjc(value: anyCollection, change: change, error: error))
+        }
     }
 }
 

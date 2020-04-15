@@ -28,7 +28,6 @@
 import UIKit
 
 class NVActivityIndicatorAnimationBallScale: NVActivityIndicatorAnimationDelegate {
-
     func setUpAnimation(in layer: CALayer, size: CGSize, color: UIColor) {
         let duration: CFTimeInterval = 1
 
@@ -51,9 +50,9 @@ class NVActivityIndicatorAnimationBallScale: NVActivityIndicatorAnimationDelegat
 
         animation.animations = [scaleAnimation, opacityAnimation]
         #if swift(>=4.2)
-        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         #else
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         #endif
         animation.duration = duration
         animation.repeatCount = HUGE

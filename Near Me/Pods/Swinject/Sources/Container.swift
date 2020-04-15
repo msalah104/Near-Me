@@ -21,7 +21,7 @@ import Foundation
 ///
 ///     let x = container.resolve(X.self)!
 ///
-/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X` 
+/// where `A` and `X` are protocols, `B` is a type conforming `A`, and `Y` is a type conforming `X`
 /// and depending on `A`.
 public final class Container {
     internal var services = [ServiceKey: ServiceEntryProtocol]()
@@ -36,10 +36,11 @@ public final class Container {
     internal init(
         parent: Container? = nil,
         debugHelper: DebugHelper,
-        defaultObjectScope: ObjectScope = .graph) {
+        defaultObjectScope: ObjectScope = .graph
+    ) {
         self.parent = parent
         self.debugHelper = debugHelper
-        self.lock = parent.map { $0.lock } ?? SpinLock()
+        lock = parent.map { $0.lock } ?? SpinLock()
         self.defaultObjectScope = defaultObjectScope
     }
 
@@ -96,7 +97,7 @@ public final class Container {
         resetObjectScope(objectScope as ObjectScopeProtocol)
     }
 
-    /// Adds a registration for the specified service with the factory closure to specify how the service is 
+    /// Adds a registration for the specified service with the factory closure to specify how the service is
     /// resolved with dependencies.
     ///
     /// - Parameters:
@@ -155,7 +156,7 @@ public final class Container {
     }
 
     /// Returns a synchronized view of the container for thread safety.
-    /// The returned container is `Resolver` type. Call this method after you finish all service registrations 
+    /// The returned container is `Resolver` type. Call this method after you finish all service registrations
     /// to the original container.
     ///
     /// - Returns: A synchronized container as `Resolver`.
@@ -178,6 +179,7 @@ public final class Container {
 }
 
 // MARK: - _Resolver
+
 extension Container: _Resolver {
     // swiftlint:disable:next identifier_name
     public func _resolve<Service, Arguments>(
@@ -236,7 +238,7 @@ extension Container: _Resolver {
 
     fileprivate func incrementResolutionDepth() {
         parent?.incrementResolutionDepth()
-        if resolutionDepth == 0 && currentObjectGraph == nil {
+        if resolutionDepth == 0, currentObjectGraph == nil {
             currentObjectGraph = GraphIdentifier()
         }
         guard resolutionDepth < maxResolutionDepth else {
@@ -256,17 +258,18 @@ extension Container: _Resolver {
 
     fileprivate func graphResolutionCompleted() {
         services.values.forEach { $0.storage.graphResolutionCompleted() }
-        self.currentObjectGraph = nil
+        currentObjectGraph = nil
     }
 }
 
 // MARK: - Resolver
+
 extension Container: Resolver {
     /// Retrieves the instance with the specified service type.
     ///
     /// - Parameter serviceType: The service type to resolve.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type 
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type
     ///            is found in the `Container`.
     public func resolve<Service>(_ serviceType: Service.Type) -> Service? {
         return resolve(serviceType, name: nil)
@@ -278,9 +281,9 @@ extension Container: Resolver {
     ///   - serviceType: The service type to resolve.
     ///   - name:        The registration name.
     ///
-    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name 
+    /// - Returns: The resolved service type instance, or nil if no registration for the service type and name
     ///            is found in the `Container`.
-    public func resolve<Service>(_ serviceType: Service.Type, name: String?) -> Service? {
+    public func resolve<Service>(_: Service.Type, name: String?) -> Service? {
         return _resolve(name: name) { (factory: (Resolver) -> Any) in factory(self) }
     }
 
@@ -314,9 +317,8 @@ extension Container: Resolver {
         }
         entry.storage.setInstance(resolvedInstance as Any, inGraph: currentObjectGraph)
 
-        if  let completed = entry.initCompleted as? (Resolver, Any) -> Void,
+        if let completed = entry.initCompleted as? (Resolver, Any) -> Void,
             let resolvedInstance = resolvedInstance as? Service {
-
             completed(self, resolvedInstance)
         }
 
@@ -325,10 +327,11 @@ extension Container: Resolver {
 }
 
 // MARK: CustomStringConvertible
+
 extension Container: CustomStringConvertible {
     public var description: String {
         return "["
             + services.map { "\n    { \($1.describeWithKey($0)) }" }.sorted().joined(separator: ",")
-        + "\n]"
+            + "\n]"
     }
 }

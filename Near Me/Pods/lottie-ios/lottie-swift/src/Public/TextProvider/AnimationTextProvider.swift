@@ -16,13 +16,12 @@ public protocol AnimationTextProvider: AnyObject {
 
 /// Text provider that simply map values from dictionary
 public final class DictionaryTextProvider: AnimationTextProvider {
-    
     public init(_ values: [String: String]) {
         self.values = values
     }
-    
+
     let values: [String: String]
-    
+
     public func textFor(keypathName: String, sourceText: String) -> String {
         return values[keypathName] ?? sourceText
     }
@@ -30,10 +29,9 @@ public final class DictionaryTextProvider: AnimationTextProvider {
 
 /// Default text provider. Uses text in the animation file
 public final class DefaultTextProvider: AnimationTextProvider {
-    public func textFor(keypathName: String, sourceText: String) -> String {
+    public func textFor(keypathName _: String, sourceText: String) -> String {
         return sourceText
     }
-    
+
     public init() {}
 }
-

@@ -26,9 +26,9 @@ import Alamofire
 import Foundation
 
 #if os(iOS) || os(tvOS) || os(watchOS)
-import UIKit
+    import UIKit
 #elseif os(macOS)
-import Cocoa
+    import Cocoa
 #endif
 
 // MARK: ImageCache
@@ -78,9 +78,9 @@ open class AutoPurgingImageCache: ImageRequestCache {
         init(_ image: Image, identifier: String) {
             self.image = image
             self.identifier = identifier
-            self.lastAccessDate = Date()
+            lastAccessDate = Date()
 
-            self.totalBytes = {
+            totalBytes = {
                 #if os(iOS) || os(tvOS) || os(watchOS)
                     let size = CGSize(width: image.size.width * image.scale, height: image.size.height * image.scale)
                 #elseif os(macOS)
@@ -142,26 +142,26 @@ open class AutoPurgingImageCache: ImageRequestCache {
             "The `memoryCapacity` must be greater than or equal to `preferredMemoryUsageAfterPurge`"
         )
 
-        self.cachedImages = [:]
-        self.currentMemoryUsage = 0
+        cachedImages = [:]
+        currentMemoryUsage = 0
 
-        self.synchronizationQueue = {
+        synchronizationQueue = {
             let name = String(format: "org.alamofire.autopurgingimagecache-%08x%08x", arc4random(), arc4random())
             return DispatchQueue(label: name, attributes: .concurrent)
         }()
 
         #if os(iOS) || os(tvOS)
-        #if swift(>=4.2)
-        let notification = UIApplication.didReceiveMemoryWarningNotification
-        #else
-        let notification = Notification.Name.UIApplicationDidReceiveMemoryWarning
-        #endif
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(AutoPurgingImageCache.removeAllImages),
-            name: notification,
-            object: nil
-        )
+            #if swift(>=4.2)
+                let notification = UIApplication.didReceiveMemoryWarningNotification
+            #else
+                let notification = Notification.Name.UIApplicationDidReceiveMemoryWarning
+            #endif
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(AutoPurgingImageCache.removeAllImages),
+                name: notification,
+                object: nil
+            )
         #endif
     }
 

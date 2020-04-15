@@ -54,7 +54,6 @@ public class ListBase: RLMListBase {
  Properties of `List` type defined on `Object` subclasses must be declared as `let` and cannot be `dynamic`.
  */
 public final class List<Element: RealmCollectionValue>: ListBase {
-
     // MARK: Properties
 
     /// The Realm which manages the list, or `nil` if the list is unmanaged.
@@ -91,7 +90,7 @@ public final class List<Element: RealmCollectionValue>: ListBase {
      Returns the index of the first object in the list matching the predicate, or `nil` if no objects match.
 
      - parameter predicate: The predicate with which to filter the objects.
-    */
+     */
     public func index(matching predicate: NSPredicate) -> Int? {
         return notFoundToNil(index: _rlmArray.indexOfObject(with: predicate))
     }
@@ -100,7 +99,7 @@ public final class List<Element: RealmCollectionValue>: ListBase {
      Returns the index of the first object in the list matching the predicate, or `nil` if no objects match.
 
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
-    */
+     */
     public func index(matching predicateFormat: String, _ args: Any...) -> Int? {
         return index(matching: NSPredicate(format: predicateFormat, argumentArray: unwrapOptionals(in: args)))
     }
@@ -158,7 +157,7 @@ public final class List<Element: RealmCollectionValue>: ListBase {
 
      - parameter value: The object value.
      - parameter key:   The name of the property whose value should be set on each object.
-    */
+     */
     public override func setValue(_ value: Any?, forKey key: String) {
         return _rlmArray.setValue(value, forKeyPath: key)
     }
@@ -169,10 +168,10 @@ public final class List<Element: RealmCollectionValue>: ListBase {
      Returns a `Results` containing all objects matching the given predicate in the list.
 
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
-    */
+     */
     public func filter(_ predicateFormat: String, _ args: Any...) -> Results<Element> {
         return Results<Element>(_rlmArray.objects(with: NSPredicate(format: predicateFormat,
-                                                              argumentArray: unwrapOptionals(in: args))))
+                                                                    argumentArray: unwrapOptionals(in: args))))
     }
 
     /**
@@ -210,10 +209,10 @@ public final class List<Element: RealmCollectionValue>: ListBase {
                 floating point, integer, and string types.
 
      - see: `sorted(byKeyPath:ascending:)`
-    */
+     */
     public func sorted<S: Sequence>(by sortDescriptors: S) -> Results<Element>
         where S.Iterator.Element == SortDescriptor {
-            return Results<Element>(_rlmArray.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
+        return Results<Element>(_rlmArray.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
     // MARK: Aggregate Operations
@@ -284,7 +283,7 @@ public final class List<Element: RealmCollectionValue>: ListBase {
      Appends the objects in the given sequence to the end of the list.
 
      - warning: This method may only be called during a write transaction.
-    */
+     */
     public func append<S: Sequence>(objectsIn objects: S) where S.Iterator.Element == Element {
         for obj in objects {
             _rlmArray.add(dynamicBridgeCast(fromSwift: obj) as AnyObject)
@@ -502,13 +501,13 @@ extension List: RealmCollection {
      */
     public func replaceSubrange<C: Collection, R>(_ subrange: R, with newElements: C)
         where C.Iterator.Element == Element, R: RangeExpression, List<Element>.Index == R.Bound {
-            let subrange = subrange.relative(to: self)
-            for _ in subrange.lowerBound..<subrange.upperBound {
-                remove(at: subrange.lowerBound)
-            }
-            for x in newElements.reversed() {
-                insert(x, at: subrange.lowerBound)
-            }
+        let subrange = subrange.relative(to: self)
+        for _ in subrange.lowerBound ..< subrange.upperBound {
+            remove(at: subrange.lowerBound)
+        }
+        for x in newElements.reversed() {
+            insert(x, at: subrange.lowerBound)
+        }
     }
 
     /// The position of the first element in a non-empty collection.
@@ -533,12 +532,13 @@ extension List: RealmCollection {
 }
 
 // MARK: - MutableCollection conformance, range replaceable collection emulation
+
 extension List: MutableCollection {
-#if swift(>=4.1)
-    public typealias SubSequence = Slice<List>
-#else
-    public typealias SubSequence = RandomAccessSlice<List>
-#endif
+    #if swift(>=4.1)
+        public typealias SubSequence = Slice<List>
+    #else
+        public typealias SubSequence = RandomAccessSlice<List>
+    #endif
 
     /**
      Returns the objects at the given range (get), or replaces the objects at the
@@ -553,7 +553,7 @@ extension List: MutableCollection {
             return SubSequence(base: self, bounds: bounds)
         }
         set {
-            replaceSubrange(bounds.lowerBound..<bounds.upperBound, with: newValue)
+            replaceSubrange(bounds.lowerBound ..< bounds.upperBound, with: newValue)
         }
     }
 
@@ -569,7 +569,7 @@ extension List: MutableCollection {
             throwRealmException("It is not possible to remove more objects (\(number)) from a list"
                 + " than it already contains (\(count)).")
         }
-        for _ in 0..<number {
+        for _ in 0 ..< number {
             _rlmArray.removeObject(at: 0)
         }
     }
@@ -586,7 +586,7 @@ extension List: MutableCollection {
             throwRealmException("It is not possible to remove more objects (\(number)) from a list"
                 + " than it already contains (\(count)).")
         }
-        for _ in 0..<number {
+        for _ in 0 ..< number {
             _rlmArray.removeLastObject()
         }
     }
@@ -603,110 +603,111 @@ extension List: MutableCollection {
             currentIndex += 1
         }
     }
+
     #if swift(>=4.1.50)
-    /**
-     Removes objects from the list at the given range.
+        /**
+         Removes objects from the list at the given range.
 
-     - warning: This method may only be called during a write transaction.
-     */
-    public func removeSubrange<R>(_ boundsExpression: R) where R: RangeExpression, List<Element>.Index == R.Bound {
-        let bounds = boundsExpression.relative(to: self)
-        for _ in bounds {
-            remove(at: bounds.lowerBound)
+         - warning: This method may only be called during a write transaction.
+         */
+        public func removeSubrange<R>(_ boundsExpression: R) where R: RangeExpression, List<Element>.Index == R.Bound {
+            let bounds = boundsExpression.relative(to: self)
+            for _ in bounds {
+                remove(at: bounds.lowerBound)
+            }
         }
-    }
+
     #else
-    /**
-     Removes objects from the list at the given range.
+        /**
+         Removes objects from the list at the given range.
 
-     - warning: This method may only be called during a write transaction.
-     */
-    public func removeSubrange(_ bounds: Range<Int>) {
-        removeSubrange(bounds.lowerBound..<bounds.upperBound)
-    }
-
-    /// :nodoc:
-    public func removeSubrange(_ bounds: ClosedRange<Int>) {
-        removeSubrange(bounds.lowerBound...bounds.upperBound)
-    }
-
-    /// :nodoc:
-    public func removeSubrange(_ bounds: CountableRange<Int>) {
-        for _ in bounds {
-            remove(at: bounds.lowerBound)
+         - warning: This method may only be called during a write transaction.
+         */
+        public func removeSubrange(_ bounds: Range<Int>) {
+            removeSubrange(bounds.lowerBound ..< bounds.upperBound)
         }
-    }
 
-    /// :nodoc:
-    public func removeSubrange(_ bounds: CountableClosedRange<Int>) {
-        for _ in bounds {
-            remove(at: bounds.lowerBound)
+        /// :nodoc:
+        public func removeSubrange(_ bounds: ClosedRange<Int>) {
+            removeSubrange(bounds.lowerBound ... bounds.upperBound)
         }
-    }
 
-    /// :nodoc:
-    public func removeSubrange(_ bounds: DefaultRandomAccessIndices<List>) {
-        removeSubrange(bounds.startIndex..<bounds.endIndex)
-    }
+        /// :nodoc:
+        public func removeSubrange(_ bounds: CountableRange<Int>) {
+            for _ in bounds {
+                remove(at: bounds.lowerBound)
+            }
+        }
 
-    /// :nodoc:
-    public func replaceSubrange<C: Collection>(_ subrange: ClosedRange<Int>, with newElements: C)
-        where C.Iterator.Element == Element {
+        /// :nodoc:
+        public func removeSubrange(_ bounds: CountableClosedRange<Int>) {
+            for _ in bounds {
+                remove(at: bounds.lowerBound)
+            }
+        }
+
+        /// :nodoc:
+        public func removeSubrange(_ bounds: DefaultRandomAccessIndices<List>) {
+            removeSubrange(bounds.startIndex ..< bounds.endIndex)
+        }
+
+        /// :nodoc:
+        public func replaceSubrange<C: Collection>(_ subrange: ClosedRange<Int>, with newElements: C)
+            where C.Iterator.Element == Element {
             removeSubrange(subrange)
             insert(contentsOf: newElements, at: subrange.lowerBound)
-    }
+        }
 
-    /// :nodoc:
-    public func replaceSubrange<C: Collection>(_ subrange: CountableRange<Int>, with newElements: C)
-        where C.Iterator.Element == Element {
+        /// :nodoc:
+        public func replaceSubrange<C: Collection>(_ subrange: CountableRange<Int>, with newElements: C)
+            where C.Iterator.Element == Element {
             removeSubrange(subrange)
             insert(contentsOf: newElements, at: subrange.lowerBound)
-    }
+        }
 
-    /// :nodoc:
-    public func replaceSubrange<C: Collection>(_ subrange: CountableClosedRange<Int>, with newElements: C)
-        where C.Iterator.Element == Element {
+        /// :nodoc:
+        public func replaceSubrange<C: Collection>(_ subrange: CountableClosedRange<Int>, with newElements: C)
+            where C.Iterator.Element == Element {
             removeSubrange(subrange)
             insert(contentsOf: newElements, at: subrange.lowerBound)
-    }
+        }
 
-
-    /// :nodoc:
-    public func replaceSubrange<C: Collection>(_ subrange: DefaultRandomAccessIndices<List>, with newElements: C)
-        where C.Iterator.Element == Element {
+        /// :nodoc:
+        public func replaceSubrange<C: Collection>(_ subrange: DefaultRandomAccessIndices<List>, with newElements: C)
+            where C.Iterator.Element == Element {
             removeSubrange(subrange)
             insert(contentsOf: newElements, at: subrange.startIndex)
-    }
-#endif
+        }
+    #endif
 }
 
 // MARK: - Codable
 
 #if swift(>=4.1)
-extension List: Decodable where Element: Decodable {
-    public convenience init(from decoder: Decoder) throws {
-        self.init()
-        var container = try decoder.unkeyedContainer()
-        while !container.isAtEnd {
-            append(try container.decode(Element.self))
+    extension List: Decodable where Element: Decodable {
+        public convenience init(from decoder: Decoder) throws {
+            self.init()
+            var container = try decoder.unkeyedContainer()
+            while !container.isAtEnd {
+                append(try container.decode(Element.self))
+            }
         }
     }
-}
 
-extension List: Encodable where Element: Encodable {
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        for value in self {
-            try container.encode(value)
+    extension List: Encodable where Element: Encodable {
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.unkeyedContainer()
+            for value in self {
+                try container.encode(value)
+            }
         }
     }
-}
 #endif
 
 // MARK: - AssistedObjectiveCBridgeable
 
 extension List: AssistedObjectiveCBridgeable {
-    internal static func bridging(from objectiveCValue: Any, with metadata: Any?) -> List {
+    internal static func bridging(from objectiveCValue: Any, with _: Any?) -> List {
         guard let objectiveCValue = objectiveCValue as? RLMArray<AnyObject> else { preconditionFailure() }
         return List(rlmArray: objectiveCValue)
     }

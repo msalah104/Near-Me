@@ -49,6 +49,7 @@ public protocol AddableType {
     /// :nodoc:
     init()
 }
+
 extension NSNumber: AddableType {}
 extension Double: AddableType {}
 extension Float: AddableType {}
@@ -79,7 +80,6 @@ extension Int64: AddableType {}
  Results instances cannot be directly instantiated.
  */
 public struct Results<Element: RealmCollectionValue>: Equatable {
-
     internal let rlmResults: RLMResults<AnyObject>
 
     /// A human-readable description of the objects represented by the results.
@@ -243,7 +243,7 @@ public struct Results<Element: RealmCollectionValue>: Equatable {
      */
     public func sorted<S: Sequence>(by sortDescriptors: S) -> Results<Element>
         where S.Iterator.Element == SortDescriptor {
-            return Results<Element>(rlmResults.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
+        return Results<Element>(rlmResults.sortedResults(using: sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
     /**
@@ -253,7 +253,7 @@ public struct Results<Element: RealmCollectionValue>: Equatable {
      */
     public func distinct<S: Sequence>(by keyPaths: S) -> Results<Element>
         where S.Iterator.Element == String {
-            return Results<Element>(rlmResults.distinctResults(usingKeyPaths: Array(keyPaths)))
+        return Results<Element>(rlmResults.distinctResults(usingKeyPaths: Array(keyPaths)))
     }
 
     // MARK: Aggregate Operations
@@ -378,7 +378,6 @@ extension Results: RealmCollection {
     // swiftlint:disable:next identifier_name
     public func _asNSFastEnumerator() -> Any {
         return rlmResults
-
     }
 
     // MARK: Collection Support
@@ -408,7 +407,7 @@ extension Results: RealmCollection {
 // MARK: AssistedObjectiveCBridgeable
 
 extension Results: AssistedObjectiveCBridgeable {
-    internal static func bridging(from objectiveCValue: Any, with metadata: Any?) -> Results {
+    internal static func bridging(from objectiveCValue: Any, with _: Any?) -> Results {
         return Results(objectiveCValue as! RLMResults)
     }
 
@@ -420,12 +419,12 @@ extension Results: AssistedObjectiveCBridgeable {
 // MARK: - Codable
 
 #if swift(>=4.1)
-extension Results: Encodable where Element: Encodable {
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.unkeyedContainer()
-        for value in self {
-            try container.encode(value)
+    extension Results: Encodable where Element: Encodable {
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.unkeyedContainer()
+            for value in self {
+                try container.encode(value)
+            }
         }
     }
-}
 #endif
