@@ -40,5 +40,4 @@ class NearCoordinator: Coordinator {
         navigationController?.viewControllers = [vc]
         window?.rootViewController = navigationController
     }
-
 }

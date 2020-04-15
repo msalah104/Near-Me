@@ -5,6 +5,9 @@ PODS:
   - CodableAlamofire (1.1.2):
     - Alamofire (~> 4.0)
   - lottie-ios (3.1.6)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
   - PromiseKit (6.3.5):
     - PromiseKit/CorePromise (= 6.3.5)
     - PromiseKit/Foundation (= 6.3.5)
@@ -38,6 +41,7 @@ DEPENDENCIES:
   - AlamofireImage
   - CodableAlamofire (~> 1.1.2)
   - lottie-ios
+  - NVActivityIndicatorView
   - PromiseKit (~> 6.3.1)
   - RealmSwift
   - RxCocoa (~> 5)
@@ -54,6 +58,7 @@ SPEC REPOS:
     - AlamofireImage
     - CodableAlamofire
     - lottie-ios
+    - NVActivityIndicatorView
     - PromiseKit
     - Realm
     - RealmSwift
@@ -71,6 +76,7 @@ SPEC CHECKSUMS:
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   CodableAlamofire: b7adfb2e5e980392014b4b3f3b8b62c01b9de4aa
   lottie-ios: 85ce835dd8c53e02509f20729fc7d6a4e6645a0a
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   PromiseKit: 32c36425387e9cfc7f1206f27bfd906d0b53c0d6
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
@@ -83,6 +89,6 @@ SPEC CHECKSUMS:
   SwinjectAutoregistration: d0de7e48db3601b8b130f2f84e5a8399e0224135
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: 0e99c2c92766a38da9fec2ec4731a157abc09b9e
+PODFILE CHECKSUM: bd607179e939d3a722418b566b27ee55943de8ed
 
 COCOAPODS: 1.8.4

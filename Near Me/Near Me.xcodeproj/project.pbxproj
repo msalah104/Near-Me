@@ -15,6 +15,7 @@
 		6A554330244531D200003DD0 /* PlaceImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55432F244531D200003DD0 /* PlaceImageResponse.swift */; };
 		6A554332244531DE00003DD0 /* PlaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A554331244531DE00003DD0 /* PlaceImage.swift */; };
 		6A5543342445335A00003DD0 /* PlaceImageRequestParamters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */; };
+		6A55433724473E1800003DD0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55433624473E1800003DD0 /* BaseViewController.swift */; };
 		6A91D6302443556200F1631C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D62F2443556200F1631C /* AppDelegate.swift */; };
 		6A91D6372443556200F1631C /* NearLocation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D6352443556200F1631C /* NearLocation.storyboard */; };
 		6A91D6392443556400F1631C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A91D6382443556400F1631C /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		6A55432F244531D200003DD0 /* PlaceImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageResponse.swift; sourceTree = "<group>"; };
 		6A554331244531DE00003DD0 /* PlaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImage.swift; sourceTree = "<group>"; };
 		6A5543332445335A00003DD0 /* PlaceImageRequestParamters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageRequestParamters.swift; sourceTree = "<group>"; };
+		6A55433624473E1800003DD0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6A91D62C2443556200F1631C /* Near Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Near Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A91D62F2443556200F1631C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A91D6362443556200F1631C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NearLocation.storyboard; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		6A55433524473DEA00003DD0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6A55433624473E1800003DD0 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		6A91D6232443556200F1631C = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +158,7 @@
 		6A91D64324435CE500F1631C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6A55433524473DEA00003DD0 /* Base */,
 				6A5543292444ED9E00003DD0 /* keys.plist */,
 				6A91D66C244375CB00F1631C /* Extensions */,
 				6A91D6482443633500F1631C /* Network */,
@@ -417,6 +428,7 @@
 				6A91D67C2443C5B500F1631C /* StoryboardLodable.swift in Sources */,
 				6A554332244531DE00003DD0 /* PlaceImage.swift in Sources */,
 				6A91D674244389C500F1631C /* NearMeViewController.swift in Sources */,
+				6A55433724473E1800003DD0 /* BaseViewController.swift in Sources */,
 				6A91D6302443556200F1631C /* AppDelegate.swift in Sources */,
 				6A5543342445335A00003DD0 /* PlaceImageRequestParamters.swift in Sources */,
 				6A91D6522443633500F1631C /* RequestParamters.swift in Sources */,

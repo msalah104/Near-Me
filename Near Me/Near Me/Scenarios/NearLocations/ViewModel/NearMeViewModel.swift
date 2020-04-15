@@ -21,9 +21,10 @@ final class NearMeViewModel {
     
     var currentPlacesUpdateType = Variable(PlacesUpdateType.Realtime)
     var placesUpdateSubject: PublishSubject<[Place]> = PublishSubject()
+    var loadingSubject: BehaviorSubject<Bool> = BehaviorSubject(value: true)
     var placesNotFoundSubject: PublishSubject<Bool> = PublishSubject()
     var errorSubject: BehaviorSubject<CustomError?> = BehaviorSubject(value: nil)
-
+    
     private var disposeBag = DisposeBag()
     private var locationManager: LocationManager!
     private let LocationError =
@@ -45,17 +46,19 @@ final class NearMeViewModel {
     }
     
     func fetchPlacesForNewLocation( long:Double, lat:Double) {
+        loadingSubject.onNext(true)
         let apiParams = FourSquarRequestParamters(long: long, lat: lat)
         let api = FoursquareApi(params: apiParams)
         
         // Fetch and notify table with plain info about places
         let places = api.fetchNearLocations().share()
-        places.toArray().subscribe(onSuccess: { (places) in
+        places.toArray().subscribe(onSuccess: { [unowned self] (places) in
             self.placesUpdateSubject.onNext(places)
-        }) { (error) in
+            self.loadingSubject.onNext(false)
+        }) { [unowned self] (error) in
             self.errorSubject.onNext(CustomError.getError(error: error))
+            self.loadingSubject.onNext(false)
         }.disposed(by: disposeBag)
-        
         
         let images = places.map({
             $0.id
@@ -64,48 +67,20 @@ final class NearMeViewModel {
                 print(error.message)
                 return Observable.just("")
             }
-            }).share()
+        }).share()
         
         let allPlaces = Observable<Place>.zip(images, places, resultSelector: { (image, place) in
             let placeCopy = place.getCopy()
             placeCopy.imageUrl = image
             return placeCopy
-            }).toArray()
+        }).toArray()
         
         allPlaces.subscribe(onSuccess: { [unowned self] (places) in
             self.placesUpdateSubject.onNext(places)
         }) { (error) in
-            
             print(error)
         }.disposed(by: disposeBag)
-//        placesUpdateSubject = allPlaces
-       
-//        let images = places.flatMap{ place in
-//            let param = PlaceImageRequestParamters(id: id ?? "")
-//            var imageUrl = ""
-//            let api = FoursquareApi(params: param as RequestParamters)
-//            return api.fetchImage()
-//        }
-        
-//        let places = locations.map{$0.id}
-        
-//        locations.subscribe(onNext: { placesResponse in
-//            let places = placesResponse.places
-//        }, onError: { (error) in
-//
-//        }, onCompleted: {
-//
-//            }).disposed(by: disposeBag)
-        
-//        api.fetchNearLocations().get { [unowned self] placesResponse in
-//            let allPlaces = placesResponse.places
-//            self.fetchImagesForPlaces(places: allPlaces ?? [])
-//            self.placesUpdateSubject.onNext(allPlaces ?? [])
-//        }.catch { error in
-//            self.errorSubject.onNext((error as! CustomError))
-//        }
     }
-
 }
 
 extension NearMeViewModel: LocationDelegate {

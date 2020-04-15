@@ -9,7 +9,7 @@
 import UIKit
 
 struct PlaceImageResponse: Codable {
-
+    
     var metaData: ResponseMetaData?
     var imageResponse: PlacePhotoResponse?
     var image : PlaceImage?
@@ -29,7 +29,6 @@ struct PlaceImageResponse: Codable {
     private mutating func getImage() {
         image =  self.imageResponse?.photos?.items?.first
     }
-    
 }
 
 struct PlacePhotoResponse:Codable {

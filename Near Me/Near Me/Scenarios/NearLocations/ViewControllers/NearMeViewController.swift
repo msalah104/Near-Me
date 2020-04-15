@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import AlamofireImage
 
-final class NearMeViewController: UIViewController, NearMeStoryboardLodable {
+final class NearMeViewController: BaseViewController, NearMeStoryboardLodable {
 
     //MARK: - Outlets
     @IBOutlet weak var errorContainerView: UIView!
@@ -74,6 +74,14 @@ final class NearMeViewController: UIViewController, NearMeStoryboardLodable {
                 self.errorContainerView.isHidden = false
                 self.errorLabel.text = er.message
                 self.errorImage.image = self.ErrorImage
+            }
+        }).disposed(by: disposeBag)
+        
+        viewModel.loadingSubject.observeOn(MainScheduler.instance).subscribe(onNext: { [unowned self]  isLoading in
+            if isLoading {
+                self.showDefaultLoader()
+            } else {
+                self.hideDefaultLoader()
             }
         }).disposed(by: disposeBag)
     }

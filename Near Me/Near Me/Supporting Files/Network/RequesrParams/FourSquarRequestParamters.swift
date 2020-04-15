@@ -12,11 +12,13 @@ class FourSquarRequestParamters: BaseRequestParamters {
     
     
     var location = ""
+    var limit = 1
 
     
     init(long:Double, lat:Double) {
         super.init()
         location = "\(long),\(lat)"
+        limit = 1
     }
     
     required init(from decoder: Decoder) throws {
@@ -29,6 +31,7 @@ class FourSquarRequestParamters: BaseRequestParamters {
         case clientId = "client_id"
         case secretId = "client_secret"
         case apiVersion = "v"
+        case limit = "limit"
     }
     
     override func encode(to encoder: Encoder) throws {
@@ -37,6 +40,7 @@ class FourSquarRequestParamters: BaseRequestParamters {
          try container.encode(secretId, forKey: .secretId)
          try container.encode(apiVersion, forKey: .apiVersion)
         try container.encode(location, forKey: .location)
+        try container.encode(limit, forKey: .limit)
          
      }
 

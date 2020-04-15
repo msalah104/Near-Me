@@ -12,23 +12,20 @@ class Place: Codable {
     struct Location:Codable {
         var address:String?
     }
-
+    
     var id:String?
     var name:String?
     var address:String?
     var imageUrl:String?
     
     private var location: Location?
-        
-        private enum CodingKeys: String, CodingKey {
-            case name
-            case id
-            case location
-        }
-
-    init() {
-        
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case id
+        case location
     }
+    
+    init() {}
     
     required init(from decoder: Decoder) throws {
         let mainContrainer = try decoder.container(keyedBy: CodingKeys.self)
@@ -39,16 +36,15 @@ class Place: Codable {
     }
     
     func getCopy() -> Place {
-        var place = Place ()
+        let place = Place ()
         place.id = self.id
         place.name = self.name
         place.address = self.address
         place.imageUrl = self.imageUrl
-        
         return place
     }
 }
-    
-    
-    
+
+
+
 

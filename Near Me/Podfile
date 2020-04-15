@@ -19,5 +19,6 @@ target 'Near Me' do
   pod 'SwinjectAutoregistration', '~> 2.6.0'
   pod 'SwinjectStoryboard'
   pod 'RealmSwift'
+  pod 'NVActivityIndicatorView'
 
 end

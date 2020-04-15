@@ -8,10 +8,10 @@
 
 import UIKit
 
+
 extension UIViewController {
     
     func showErrorMessage(title: String, message: String, customAction:UIAlertAction? = nil, handler: ((UIAlertAction) -> Void)? = nil) {
-        
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let action = customAction  {

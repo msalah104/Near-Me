@@ -13,7 +13,6 @@ struct PlacesGroupsResponse: Codable {
 }
 
 struct PlacesGroups: Codable {
-    
     struct Item:Codable {
         var venue:Place?
     }
