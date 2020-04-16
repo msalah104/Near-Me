@@ -21,5 +21,7 @@ target 'Near Me' do
   pod 'SwinjectStoryboard'
   pod 'RealmSwift'
   pod 'NVActivityIndicatorView'
+  
+  target :'Near MeTests'
 
 end

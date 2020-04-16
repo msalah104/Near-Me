@@ -53,7 +53,11 @@ final class NearMeViewModel {
         // Fetch and notify table with plain info about places
         let places = api.fetchNearLocations().share()
         places.toArray().subscribe(onSuccess: { [unowned self] places in
-            self.placesUpdateSubject.onNext(places)
+            if places.isEmpty {
+                self.placesNotFoundSubject.onNext(true)
+            } else {
+                self.placesUpdateSubject.onNext(places)
+            }
             self.loadingSubject.onNext(false)
         }) { error in
             self.errorSubject.onNext(CustomError.getError(error: error))

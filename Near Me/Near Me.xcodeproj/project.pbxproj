@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		024AB98431AF46E3A10B16A3 /* Pods_Near_Me.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0D6A64B19B18A9B4219811 /* Pods_Near_Me.framework */; };
+		6A46F2F82448FE1F00899559 /* Near_MeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A46F2F72448FE1F00899559 /* Near_MeTests.swift */; };
 		6A5543272444DA1000003DD0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5543262444DA1000003DD0 /* UIViewController+Extension.swift */; };
 		6A55432A2444ED9F00003DD0 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A5543292444ED9E00003DD0 /* keys.plist */; };
 		6A55432C2444EE0700003DD0 /* FourSquarRequestParamters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A55432B2444EE0700003DD0 /* FourSquarRequestParamters.swift */; };
@@ -43,10 +44,24 @@
 		6A91D67C2443C5B500F1631C /* StoryboardLodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D67B2443C5B500F1631C /* StoryboardLodable.swift */; };
 		6A91D67E2443D47200F1631C /* LocationUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D67D2443D47200F1631C /* LocationUpdater.swift */; };
 		6A91D6802443D8B000F1631C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A91D67F2443D8B000F1631C /* LocationManager.swift */; };
+		92C2297846F7FA193AC588FB /* Pods_Near_Me_Near_MeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E41AA06EC5BDE03A7DB6006F /* Pods_Near_Me_Near_MeTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6A46F2FA2448FE1F00899559 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6A91D6242443556200F1631C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6A91D62B2443556200F1631C;
+			remoteInfo = "Near Me";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		159ED27C01A5335CAF83821D /* Pods-Near Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near Me.release.xcconfig"; path = "Target Support Files/Pods-Near Me/Pods-Near Me.release.xcconfig"; sourceTree = "<group>"; };
+		6A46F2F52448FE1F00899559 /* Near MeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Near MeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A46F2F72448FE1F00899559 /* Near_MeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Near_MeTests.swift; sourceTree = "<group>"; };
+		6A46F2F92448FE1F00899559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A5543262444DA1000003DD0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		6A5543292444ED9E00003DD0 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		6A55432B2444EE0700003DD0 /* FourSquarRequestParamters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquarRequestParamters.swift; sourceTree = "<group>"; };
@@ -84,11 +99,22 @@
 		6A91D67B2443C5B500F1631C /* StoryboardLodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLodable.swift; sourceTree = "<group>"; };
 		6A91D67D2443D47200F1631C /* LocationUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationUpdater.swift; sourceTree = "<group>"; };
 		6A91D67F2443D8B000F1631C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7E4BAF2F3BF233511259BA92 /* Pods-Near Me-Near MeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near Me-Near MeTests.release.xcconfig"; path = "Target Support Files/Pods-Near Me-Near MeTests/Pods-Near Me-Near MeTests.release.xcconfig"; sourceTree = "<group>"; };
+		BB77B1A6F1DB9D585F740C6B /* Pods-Near Me-Near MeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near Me-Near MeTests.debug.xcconfig"; path = "Target Support Files/Pods-Near Me-Near MeTests/Pods-Near Me-Near MeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE0D6A64B19B18A9B4219811 /* Pods_Near_Me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Near_Me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37B11A14D8A386ECDB7B592 /* Pods-Near Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Near Me.debug.xcconfig"; path = "Target Support Files/Pods-Near Me/Pods-Near Me.debug.xcconfig"; sourceTree = "<group>"; };
+		E41AA06EC5BDE03A7DB6006F /* Pods_Near_Me_Near_MeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Near_Me_Near_MeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6A46F2F22448FE1F00899559 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92C2297846F7FA193AC588FB /* Pods_Near_Me_Near_MeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A91D6292443556200F1631C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -105,8 +131,19 @@
 			children = (
 				E37B11A14D8A386ECDB7B592 /* Pods-Near Me.debug.xcconfig */,
 				159ED27C01A5335CAF83821D /* Pods-Near Me.release.xcconfig */,
+				BB77B1A6F1DB9D585F740C6B /* Pods-Near Me-Near MeTests.debug.xcconfig */,
+				7E4BAF2F3BF233511259BA92 /* Pods-Near Me-Near MeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		6A46F2F62448FE1F00899559 /* Near MeTests */ = {
+			isa = PBXGroup;
+			children = (
+				6A46F2F72448FE1F00899559 /* Near_MeTests.swift */,
+				6A46F2F92448FE1F00899559 /* Info.plist */,
+			);
+			path = "Near MeTests";
 			sourceTree = "<group>";
 		};
 		6A55433524473DEA00003DD0 /* Base */ = {
@@ -121,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				6A91D62E2443556200F1631C /* Near Me */,
+				6A46F2F62448FE1F00899559 /* Near MeTests */,
 				6A91D62D2443556200F1631C /* Products */,
 				626622B83BA01435AF8442F5 /* Pods */,
 				6C36117834B70E5267486A6D /* Frameworks */,
@@ -131,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				6A91D62C2443556200F1631C /* Near Me.app */,
+				6A46F2F52448FE1F00899559 /* Near MeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				BE0D6A64B19B18A9B4219811 /* Pods_Near_Me.framework */,
+				E41AA06EC5BDE03A7DB6006F /* Pods_Near_Me_Near_MeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -301,6 +341,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6A46F2F42448FE1F00899559 /* Near MeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A46F2FE2448FE1F00899559 /* Build configuration list for PBXNativeTarget "Near MeTests" */;
+			buildPhases = (
+				66A1D5DF9DE442F74CAAA406 /* [CP] Check Pods Manifest.lock */,
+				6A46F2F12448FE1F00899559 /* Sources */,
+				6A46F2F22448FE1F00899559 /* Frameworks */,
+				6A46F2F32448FE1F00899559 /* Resources */,
+				77826159017E065BAD1698A7 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A46F2FB2448FE1F00899559 /* PBXTargetDependency */,
+			);
+			name = "Near MeTests";
+			productName = "Near MeTests";
+			productReference = 6A46F2F52448FE1F00899559 /* Near MeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6A91D62B2443556200F1631C /* Near Me */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A91D6402443556400F1631C /* Build configuration list for PBXNativeTarget "Near Me" */;
@@ -332,6 +392,10 @@
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = MSalah;
 				TargetAttributes = {
+					6A46F2F42448FE1F00899559 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 6A91D62B2443556200F1631C;
+					};
 					6A91D62B2443556200F1631C = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -351,11 +415,19 @@
 			projectRoot = "";
 			targets = (
 				6A91D62B2443556200F1631C /* Near Me */,
+				6A46F2F42448FE1F00899559 /* Near MeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6A46F2F32448FE1F00899559 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A91D62A2443556200F1631C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,6 +459,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Near Me-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66A1D5DF9DE442F74CAAA406 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Near Me-Near MeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -427,6 +521,23 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
+		77826159017E065BAD1698A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Near Me-Near MeTests/Pods-Near Me-Near MeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Near Me-Near MeTests/Pods-Near Me-Near MeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Near Me-Near MeTests/Pods-Near Me-Near MeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AF4368CA47F0906B92F915AE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,6 +558,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6A46F2F12448FE1F00899559 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A46F2F82448FE1F00899559 /* Near_MeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A91D6282443556200F1631C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -486,6 +605,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6A46F2FB2448FE1F00899559 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6A91D62B2443556200F1631C /* Near Me */;
+			targetProxy = 6A46F2FA2448FE1F00899559 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		6A91D6352443556200F1631C /* NearLocation.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -506,6 +633,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6A46F2FC2448FE1F00899559 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB77B1A6F1DB9D585F740C6B /* Pods-Near Me-Near MeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J83X3QNJRW;
+				INFOPLIST_FILE = "Near MeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MSalah.Near-MeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Near Me.app/Near Me";
+			};
+			name = Debug;
+		};
+		6A46F2FD2448FE1F00899559 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E4BAF2F3BF233511259BA92 /* Pods-Near Me-Near MeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J83X3QNJRW;
+				INFOPLIST_FILE = "Near MeTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.MSalah.Near-MeTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Near Me.app/Near Me";
+			};
+			name = Release;
+		};
 		6A91D63E2443556400F1631C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -663,6 +832,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6A46F2FE2448FE1F00899559 /* Build configuration list for PBXNativeTarget "Near MeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A46F2FC2448FE1F00899559 /* Debug */,
+				6A46F2FD2448FE1F00899559 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6A91D6272443556200F1631C /* Build configuration list for PBXProject "Near Me" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
